@@ -1,0 +1,2173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discover Singapore — A Travel Guide</title>
+<meta name="description" content="Where the future meets tradition. Explore Singapore's iconic landmarks, food, culture and hidden gems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,560;0,9..144,650;1,9..144,450&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg:#FAFAF9;
+  --bg-alt:#F1F0EC;
+  --surface:#FFFFFF;
+  --ink:#16181C;
+  --ink-soft:#5B5F66;
+  --ink-faint:#8B8E93;
+  --border:#E4E3DE;
+  --red:#C8272B;
+  --red-dark:#A31E22;
+  --grad:linear-gradient(135deg,#4C5FD7 0%,#8C6FEA 100%);
+  --grad-soft:linear-gradient(135deg,rgba(76,95,215,.14) 0%,rgba(140,111,234,.14) 100%);
+  --shadow-sm:0 1px 2px rgba(20,20,25,.06);
+  --shadow-md:0 12px 32px -12px rgba(20,20,25,.18);
+  --shadow-lg:0 24px 64px -20px rgba(20,20,25,.28);
+  --radius-s:12px;
+  --radius-m:20px;
+  --radius-l:28px;
+  --serif:'Fraunces',Georgia,serif;
+  --sans:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;}
+}
+body{
+  font-family:var(--sans);
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+input{font-family:inherit;}
+ul{list-style:none;}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:560;line-height:1.08;letter-spacing:-.01em;}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:4px;}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:12px 20px;z-index:2000;border-radius:0 0 10px 0;}
+.skip-link:focus{left:0;}
+
+.container{max-width:1280px;margin:0 auto;padding:0 32px;}
+@media(max-width:640px){.container{padding:0 20px;}}
+
+.eyebrow-emoji{font-size:1.5rem;line-height:1;}
+
+/* Section rhythm */
+.section{padding:112px 0;}
+.section-alt{background:var(--bg-alt);}
+@media(max-width:768px){.section{padding:72px 0;}}
+.section-head{max-width:640px;margin-bottom:56px;}
+.section-head h2{font-size:clamp(32px,4.2vw,52px);margin-bottom:16px;}
+.section-head p.lede{font-size:19px;color:var(--ink-soft);max-width:520px;}
+
+/* Reveal-on-scroll */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease),transform .6s var(--ease);}
+.reveal.is-visible{opacity:1;transform:translateY(0);}
+
+/* Buttons */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:15px 30px;border-radius:100px;font-weight:600;font-size:15.5px;
+  transition:transform .25s var(--ease),background .25s var(--ease),box-shadow .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease);
+  white-space:nowrap;
+}
+.btn:active{transform:scale(.96);}
+.btn-primary{background:var(--red);color:#fff;box-shadow:0 10px 24px -10px rgba(200,39,43,.55);}
+.btn-primary:hover{background:var(--red-dark);box-shadow:0 14px 30px -10px rgba(200,39,43,.65);}
+.btn-ghost{background:rgba(255,255,255,.14);color:#fff;border:1.5px solid rgba(255,255,255,.55);backdrop-filter:blur(6px);}
+.btn-ghost:hover{background:rgba(255,255,255,.24);}
+.btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--border);}
+.btn-outline:hover{border-color:var(--ink);}
+.btn-sm{padding:10px 20px;font-size:14px;}
+.btn-full{width:100%;}
+
+/* ============ NAVBAR ============ */
+#navbar{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  padding:22px 0;transition:padding .35s var(--ease),background .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);
+  border-bottom:1px solid transparent;
+}
+#navbar .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.logo{font-family:var(--sans);font-weight:800;font-size:15.5px;letter-spacing:.01em;color:#fff;transition:color .35s var(--ease);white-space:nowrap;}
+.logo span{color:var(--red);}
+@media(max-width:400px){.logo{font-size:13px;}}
+.nav-links{display:flex;align-items:center;gap:6px;}
+.nav-links a{
+  font-size:14.5px;font-weight:600;color:rgba(255,255,255,.82);padding:9px 15px;border-radius:100px;
+  transition:color .3s,background .3s;
+}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.12);}
+.nav-links a.active{color:#fff;background:rgba(255,255,255,.18);}
+.nav-actions{display:flex;align-items:center;gap:6px;}
+.icon-btn{
+  width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:50%;
+  color:#fff;transition:background .3s,transform .2s;position:relative;
+}
+.icon-btn:hover{background:rgba(255,255,255,.15);}
+.icon-btn:active{transform:scale(.92);}
+.icon-btn svg{width:19px;height:19px;}
+.fav-count{
+  position:absolute;top:-2px;right:-2px;background:var(--red);color:#fff;font-size:10px;font-weight:700;
+  min-width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:0 3px;
+}
+.hamburger{display:none;}
+
+#navbar.scrolled{
+  background:rgba(250,250,249,.86);backdrop-filter:blur(16px) saturate(1.4);
+  box-shadow:var(--shadow-sm);padding:14px 0;border-bottom:1px solid var(--border);
+}
+#navbar.scrolled .logo{color:var(--ink);}
+#navbar.scrolled .nav-links a{color:var(--ink-soft);}
+#navbar.scrolled .nav-links a:hover{color:var(--ink);background:rgba(20,20,25,.06);}
+#navbar.scrolled .nav-links a.active{color:var(--ink);background:rgba(20,20,25,.08);}
+#navbar.scrolled .icon-btn{color:var(--ink);}
+#navbar.scrolled .icon-btn:hover{background:rgba(20,20,25,.07);}
+
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .hamburger{
+    display:flex;width:40px;height:40px;align-items:center;justify-content:center;color:#fff;border-radius:50%;
+  }
+  #navbar.scrolled .hamburger{color:var(--ink);}
+  #navbar:not(.scrolled) .hamburger:hover, #navbar:not(.scrolled) .icon-btn:hover{background:rgba(255,255,255,.15);}
+}
+
+/* Mobile menu */
+#mobileMenu{
+  position:fixed;inset:0;z-index:1100;background:var(--ink);color:#fff;
+  display:flex;flex-direction:column;padding:26px 24px;
+  transform:translateX(100%);transition:transform .45s var(--ease);
+}
+#mobileMenu.open{transform:translateX(0);}
+#mobileMenu .mm-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:48px;}
+#mobileMenu .mm-close{width:40px;height:40px;display:flex;align-items:center;justify-content:center;color:#fff;border-radius:50%;}
+#mobileMenu .mm-close:hover{background:rgba(255,255,255,.12);}
+#mobileMenu nav{display:flex;flex-direction:column;gap:6px;}
+#mobileMenu nav a{font-family:var(--serif);font-size:32px;padding:12px 4px;border-bottom:1px solid rgba(255,255,255,.12);}
+#mobileMenu .mm-foot{margin-top:auto;color:rgba(255,255,255,.5);font-size:14px;}
+
+/* ============ SEARCH OVERLAY ============ */
+#searchOverlay{
+  position:fixed;inset:0;z-index:1200;background:rgba(22,24,28,.72);backdrop-filter:blur(6px);
+  display:flex;align-items:flex-start;justify-content:center;padding:90px 20px;
+  opacity:0;pointer-events:none;transition:opacity .3s var(--ease);
+}
+#searchOverlay.open{opacity:1;pointer-events:auto;}
+.search-panel{background:var(--surface);border-radius:var(--radius-l);width:100%;max-width:640px;box-shadow:var(--shadow-lg);overflow:hidden;
+  transform:translateY(-14px);transition:transform .35s var(--ease);max-height:74vh;display:flex;flex-direction:column;}
+#searchOverlay.open .search-panel{transform:translateY(0);}
+.search-input-row{display:flex;align-items:center;gap:14px;padding:22px 26px;border-bottom:1px solid var(--border);}
+.search-input-row svg{width:20px;height:20px;color:var(--ink-faint);flex-shrink:0;}
+#searchInput{flex:1;border:none;outline:none;font-size:19px;background:transparent;color:var(--ink);}
+#searchInput::placeholder{color:var(--ink-faint);}
+.search-close{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ink-faint);flex-shrink:0;}
+.search-close:hover{background:var(--bg-alt);color:var(--ink);}
+#searchResults{overflow-y:auto;padding:10px;}
+.search-hint{padding:30px 24px;color:var(--ink-faint);font-size:14.5px;}
+.search-result{
+  display:flex;align-items:center;gap:14px;padding:11px;border-radius:14px;transition:background .2s;cursor:pointer;
+}
+.search-result:hover{background:var(--bg-alt);}
+.search-result:focus-visible{outline:2px solid var(--red);outline-offset:2px;}
+.search-result .sr-thumb{width:52px;height:52px;border-radius:10px;overflow:hidden;flex-shrink:0;position:relative;background:var(--grad-soft);}
+.search-result .sr-thumb img{width:100%;height:100%;object-fit:cover;}
+.search-result .sr-text{flex:1;min-width:0;}
+.search-result .sr-name{font-weight:700;font-size:15px;}
+.search-result .sr-meta{font-size:13px;color:var(--ink-faint);}
+
+/* ============ PAGES ============ */
+.page{display:none;}
+.page.active{display:block;}
+
+/* ---- HERO ---- */
+.hero{
+  position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden;color:#fff;
+}
+.hero .media-bg{position:absolute;inset:0;z-index:0;background:linear-gradient(160deg,#1b2033,#3a2f45 55%,#5a2a2c);}
+.hero .media-bg img{width:100%;height:100%;object-fit:cover;}
+.hero .media-bg img.broken{display:none;}
+.hero .overlay{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(10,12,16,.35) 0%,rgba(10,12,16,.35) 40%,rgba(10,10,14,.86) 100%);
+}
+.hero-content{position:relative;z-index:2;padding:0 32px 96px;width:100%;max-width:1280px;margin:0 auto;}
+@media(max-width:640px){.hero-content{padding:0 20px 76px;}}
+.hero h1{font-size:clamp(48px,9vw,104px);color:#fff;margin-bottom:18px;}
+.hero .subtitle{font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.4vw,27px);color:rgba(255,255,255,.92);margin-bottom:22px;font-weight:450;}
+.hero .desc{font-size:17.5px;color:rgba(255,255,255,.8);max-width:560px;margin-bottom:38px;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+.scroll-cue{
+  position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.75);font-size:12px;letter-spacing:.06em;
+}
+.scroll-cue .stick{width:1px;height:34px;background:rgba(255,255,255,.4);position:relative;overflow:hidden;}
+.scroll-cue .stick::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:#fff;animation:scrollDown 1.8s infinite ease;}
+@keyframes scrollDown{0%{top:-100%;}60%{top:100%;}100%{top:100%;}}
+
+/* fade-slide load sequence — one deliberate orchestrated moment on the hero only */
+.hero h1,.hero .subtitle,.hero .desc,.hero-actions{
+  opacity:0;transform:translateY(22px);animation:heroIn .9s var(--ease) forwards;
+}
+.hero h1{animation-delay:.05s;}
+.hero .subtitle{animation-delay:.16s;}
+.hero .desc{animation-delay:.25s;}
+.hero-actions{animation-delay:.34s;}
+@keyframes heroIn{to{opacity:1;transform:translateY(0);}}
+
+/* ---- Media / card image ---- */
+.media{position:relative;overflow:hidden;background:var(--grad-soft);}
+.media img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease);}
+.media img.broken{display:none;}
+
+/* ---- Intro / feature cards ---- */
+.intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:start;}
+@media(max-width:900px){.intro-grid{grid-template-columns:1fr;gap:40px;}}
+.intro-grid h2{font-size:clamp(30px,4vw,46px);margin-bottom:20px;}
+.intro-grid p{color:var(--ink-soft);font-size:18px;max-width:52ch;}
+.feature-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.feature-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-m);padding:26px 22px;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);
+}
+.feature-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:transparent;}
+.feature-card .fc-emoji{font-size:26px;margin-bottom:14px;display:block;}
+.feature-card h4{font-family:var(--sans);font-weight:700;font-size:15.5px;margin-bottom:6px;}
+.feature-card p{font-size:13.5px;color:var(--ink-faint);}
+
+/* ---- Grids of cards (destinations/food/gems) ---- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:28px;}
+.dcard{
+  background:var(--surface);border-radius:var(--radius-m);overflow:hidden;border:1px solid var(--border);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease);position:relative;display:flex;flex-direction:column;
+}
+.dcard:hover{transform:translateY(-8px);box-shadow:var(--shadow-md);}
+.dcard:hover .media img{transform:scale(1.06);}
+.dcard:focus{outline:none;}
+.dcard:focus-visible{outline:2px solid var(--red);outline-offset:3px;}
+.dcard .media{aspect-ratio:4/3;}
+.dcard .cat-pill{
+  position:absolute;top:14px;left:14px;background:rgba(255,255,255,.92);color:var(--ink);font-size:11.5px;font-weight:700;
+  padding:5px 11px;border-radius:100px;z-index:2;
+}
+.dcard .body{padding:20px 20px 22px;display:flex;flex-direction:column;gap:8px;flex:1;}
+.dcard h3{font-size:20px;}
+.dcard p{color:var(--ink-soft);font-size:14.5px;flex:1;}
+.dcard .card-foot{display:flex;align-items:center;justify-content:space-between;margin-top:8px;}
+.card-link{font-weight:700;font-size:14px;color:var(--red);display:inline-flex;align-items:center;gap:4px;}
+.card-link .cl-arrow{width:13px;height:13px;transition:transform .25s var(--ease);}
+.card-link:hover .cl-arrow{transform:translateX(4px);}
+
+/* ---- FavoriteButton (global, reusable heart component) ----
+   One consistent circular button used everywhere a destination can be
+   saved: explore/destination cards, the featured strip, hidden gems,
+   the destination modal, search results, and the favorites drawer. */
+.fav-btn{
+  width:40px;height:40px;border-radius:50%;flex-shrink:0;border:1px solid rgba(20,20,25,.07);
+  background:rgba(255,255,255,.92);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;color:var(--ink-soft);
+  box-shadow:0 6px 16px -6px rgba(20,20,25,.35);cursor:pointer;
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease);
+}
+.fav-btn-icon{width:19px;height:19px;display:block;overflow:visible;}
+.fav-btn-icon path{
+  fill:var(--red);fill-opacity:0;stroke:currentColor;stroke-width:2;stroke-linejoin:round;stroke-linecap:round;
+  transition:fill-opacity .3s var(--ease),stroke .3s var(--ease);
+}
+.fav-btn:hover{transform:scale(1.08);box-shadow:0 10px 24px -6px rgba(20,20,25,.42);}
+.fav-btn:active{transform:scale(.9);}
+.fav-btn:focus-visible{outline:2px solid var(--red);outline-offset:2px;}
+.fav-btn.active{color:var(--red);}
+.fav-btn.active .fav-btn-icon path{fill-opacity:1;}
+@keyframes favPop{0%{transform:scale(1);}40%{transform:scale(1.32);}65%{transform:scale(.94);}100%{transform:scale(1);}}
+.fav-btn.pop .fav-btn-icon{animation:favPop .42s var(--ease);}
+
+/* Positioning variants — the visual button above never changes; only
+   where it sits changes by context. */
+.fav-btn-corner{position:absolute;top:16px;right:16px;z-index:2;}
+@media(max-width:640px){.fav-btn-corner{top:12px;right:12px;}}
+.fav-btn-modal{position:absolute;top:18px;right:66px;z-index:2;}
+.fav-btn-inline{width:36px;height:36px;}
+.fav-btn-inline .fav-btn-icon{width:17px;height:17px;}
+
+/* Category tabs */
+.tab-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:44px;}
+.tab{
+  padding:11px 20px;border-radius:100px;border:1.5px solid var(--border);font-weight:600;font-size:14.5px;color:var(--ink-soft);
+  transition:all .25s var(--ease);
+}
+.tab:hover{border-color:var(--ink);color:var(--ink);}
+.tab.active{background:var(--ink);border-color:var(--ink);color:#fff;}
+
+/* Featured strip */
+.featured-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+@media(max-width:1000px){.featured-strip{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.featured-strip{grid-template-columns:1fr;}}
+.feat-card{position:relative;border-radius:var(--radius-m);overflow:hidden;aspect-ratio:3/4;cursor:pointer;}
+.feat-card:focus{outline:none;}
+.feat-card:focus-visible{outline:2px solid #fff;outline-offset:3px;}
+.feat-card .media{position:absolute;inset:0;}
+.feat-card .grad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.82) 100%);transition:background .35s;}
+.feat-card:hover .grad{background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,.9) 100%);}
+.feat-card:hover .media img{transform:scale(1.08);}
+.feat-info{position:absolute;left:0;right:0;bottom:0;padding:22px;color:#fff;}
+.feat-info .fi-tag{font-size:12px;color:rgba(255,255,255,.7);margin-bottom:6px;font-weight:600;}
+.feat-info h3{font-size:22px;margin-bottom:8px;}
+.feat-info .fi-more{
+  max-height:0;overflow:hidden;opacity:0;transition:max-height .35s var(--ease),opacity .35s var(--ease);font-size:13.5px;color:rgba(255,255,255,.85);
+}
+.feat-card:hover .fi-more,.feat-card:focus-within .fi-more{max-height:80px;opacity:1;margin-top:6px;}
+
+/* ---- Hidden gems editorial ---- */
+.gems-wrap{display:flex;flex-direction:column;gap:2px;}
+.gem-row{
+  display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px;padding:46px 0;border-top:1px solid var(--border);
+  cursor:pointer;
+}
+.gem-row:focus{outline:none;}
+.gem-row:focus-visible{outline:2px solid var(--red);outline-offset:6px;}
+.gems-wrap .gem-row:last-child{border-bottom:1px solid var(--border);}
+.gem-row:nth-child(even) .gem-media{order:2;}
+.gem-media{aspect-ratio:16/11;border-radius:var(--radius-m);overflow:hidden;position:relative;}
+.gem-media .media{position:absolute;inset:0;}
+.gem-media img{transition:transform .7s var(--ease);}
+.gem-row:hover .gem-media img{transform:scale(1.05);}
+.gem-text h3{font-size:clamp(24px,3vw,34px);margin-bottom:14px;}
+.gem-text p{color:var(--ink-soft);font-size:16px;max-width:44ch;margin-bottom:18px;}
+@media(max-width:800px){
+  .gem-row{grid-template-columns:1fr;gap:22px;padding:34px 0;}
+  .gem-row:nth-child(even) .gem-media{order:0;}
+}
+
+/* ---- Experience Singapore (featured video) ---- */
+.experience-section{
+  background:linear-gradient(160deg,#14151b 0%,#1c1f2e 55%,#251a29 100%);
+  color:#fff;
+}
+.experience-head{max-width:620px;margin:0 auto 52px;text-align:center;}
+.experience-head .exp-subtitle{
+  font-family:var(--serif);font-style:italic;font-weight:450;
+  font-size:clamp(18px,2.2vw,24px);color:rgba(255,255,255,.88);margin-bottom:16px;
+}
+.experience-head h2{color:#fff;}
+.experience-head p{color:rgba(255,255,255,.62);font-size:16.5px;max-width:56ch;margin:16px auto 0;}
+
+.video-frame{
+  max-width:980px;margin:0 auto;position:relative;aspect-ratio:16/9;
+  border-radius:var(--radius-l);overflow:hidden;background:#000;
+  box-shadow:0 34px 76px -22px rgba(0,0,0,.6),0 10px 28px -10px rgba(140,111,234,.25);
+  cursor:pointer;min-width:200px;
+}
+.video-frame img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease);display:block;}
+.video-frame:hover img{transform:scale(1.045);}
+.video-frame .v-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1) 0%,rgba(0,0,0,.5) 100%);transition:background .35s var(--ease);}
+.video-frame:hover .v-overlay{background:linear-gradient(180deg,rgba(0,0,0,.05) 0%,rgba(0,0,0,.4) 100%);}
+.play-btn{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:88px;height:88px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--red) 0%,#8C6FEA 100%);
+  display:flex;align-items:center;justify-content:center;color:#fff;
+  box-shadow:0 18px 44px -12px rgba(0,0,0,.55);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+}
+.video-frame:hover .play-btn{transform:translate(-50%,-50%) scale(1.08);box-shadow:0 22px 52px -10px rgba(0,0,0,.6);}
+.play-btn:active{transform:translate(-50%,-50%) scale(.94);}
+.play-btn:focus-visible{outline:2px solid #fff;outline-offset:4px;}
+.play-btn svg{width:30px;height:30px;margin-left:4px;}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+.video-frame.is-playing{cursor:default;}
+.video-frame.is-playing img,
+.video-frame.is-playing .v-overlay,
+.video-frame.is-playing .play-btn{display:none;}
+
+@media(max-width:640px){
+  .play-btn{width:64px;height:64px;}
+  .play-btn svg{width:22px;height:22px;margin-left:3px;}
+  .video-frame{border-radius:var(--radius-m);}
+}
+
+/* ---- Map filters (independent of the Explore page's own tabs) ---- */
+.map-filter-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px;}
+@media(max-width:640px){
+  .map-filter-row{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .map-filter-row::-webkit-scrollbar{display:none;}
+}
+.map-filter-tab{
+  padding:11px 20px;border-radius:100px;border:1.5px solid var(--border);font-weight:600;font-size:14.5px;color:var(--ink-soft);
+  background:var(--surface);transition:all .25s var(--ease);flex-shrink:0;white-space:nowrap;
+}
+.map-filter-tab:hover{border-color:var(--ink);color:var(--ink);}
+.map-filter-tab.active{background:var(--ink);border-color:var(--ink);color:#fff;}
+.map-filter-tab:focus-visible{outline:2px solid var(--red);outline-offset:2px;}
+
+/* ---- Map ---- */
+.map-wrap{
+  position:relative;background:linear-gradient(160deg,#12141a,#1c2036 55%,#241a2c);border-radius:var(--radius-l);
+  overflow:hidden;height:480px;
+}
+@media(max-width:700px){.map-wrap{height:420px;}}
+.map-wrap svg.island{position:absolute;inset:0;width:100%;height:100%;}
+#mapPins{position:absolute;inset:0;transition:opacity .2s var(--ease);}
+#mapPins.is-switching{opacity:0;}
+.map-pin{
+  position:absolute;width:30px;height:38px;transform:translate(-50%,-100%);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  filter:drop-shadow(0 3px 6px rgba(0,0,0,.45));
+  transition:transform .22s var(--ease),filter .22s var(--ease);
+}
+.map-pin svg{width:100%;height:100%;}
+.map-pin svg .pin-body{fill:var(--red);}
+.map-pin svg .pin-dot{fill:#fff;}
+.map-pin:hover,.map-pin:focus-visible{transform:translate(-50%,-100%) scale(1.14);filter:drop-shadow(0 5px 10px rgba(0,0,0,.55));}
+.map-pin:focus-visible{outline:none;}
+.map-pin.active svg .pin-body{fill:#fff;}
+.map-pin.active svg .pin-dot{fill:var(--red);}
+.map-popover{
+  position:absolute;width:250px;max-height:calc(100% - 32px);background:var(--surface);border-radius:16px;
+  overflow:hidden;box-shadow:var(--shadow-lg);display:flex;flex-direction:column;
+  z-index:6;opacity:0;pointer-events:none;transform:translateY(6px) scale(.96);
+  transition:opacity .18s var(--ease),transform .18s var(--ease);
+}
+.map-popover.open{opacity:1;pointer-events:auto;transform:translateY(0) scale(1);}
+.map-popover .mp-thumb{position:relative;aspect-ratio:16/9;background:var(--grad-soft);flex-shrink:0;}
+.map-popover .mp-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.map-popover .mp-body{padding:14px 16px 16px;overflow-y:auto;}
+.map-popover .mp-cat{font-size:11px;font-weight:700;color:var(--red);text-transform:none;margin-bottom:4px;}
+.map-popover h4{font-family:var(--sans);font-size:15px;font-weight:700;margin-bottom:6px;color:var(--ink);}
+.map-popover p.mp-desc{font-size:12.5px;color:var(--ink-soft);margin-bottom:10px;}
+@media(max-width:900px){.map-popover{width:220px;}}
+@media(max-width:640px){.map-popover{width:198px;}.map-popover .mp-body{padding:12px 14px 14px;}}
+.map-legend{position:absolute;bottom:18px;left:18px;color:rgba(255,255,255,.6);font-size:12.5px;}
+
+/* ---- Food page ---- */
+.food-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:26px;}
+.food-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-m);overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s var(--ease);}
+.food-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);}
+.food-card .media{aspect-ratio:1/1;}
+.food-card:hover .media img{transform:scale(1.06);}
+.food-card .body{padding:20px;}
+.food-card .ft-tag{font-size:12px;color:var(--red);font-weight:700;margin-bottom:6px;}
+.food-card h3{font-size:19px;margin-bottom:8px;}
+.food-card p{font-size:14px;color:var(--ink-soft);margin-bottom:10px;}
+.food-card .rec{font-size:12.5px;color:var(--ink-faint);border-top:1px dashed var(--border);padding-top:10px;}
+
+.hawker-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+@media(max-width:700px){.hawker-grid{grid-template-columns:1fr;}}
+.hawker-card{position:relative;border-radius:var(--radius-m);overflow:hidden;aspect-ratio:5/4;}
+.hawker-card .media{position:absolute;inset:0;}
+.hawker-card .grad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,.82) 100%);}
+.hawker-info{position:absolute;left:0;right:0;bottom:0;padding:24px;color:#fff;}
+.hawker-info h3{font-size:23px;margin-bottom:6px;}
+.hawker-info p{font-size:14px;color:rgba(255,255,255,.85);max-width:36ch;}
+
+/* ---- Itinerary ---- */
+.itin-head-row{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-bottom:8px;}
+.duration-tabs{display:flex;gap:10px;background:var(--bg-alt);padding:6px;border-radius:100px;}
+.duration-tabs button{padding:10px 22px;border-radius:100px;font-weight:700;font-size:14.5px;color:var(--ink-soft);transition:all .25s var(--ease);}
+.duration-tabs button.active{background:var(--ink);color:#fff;}
+.itin-actions{display:flex;gap:12px;margin:32px 0 44px;flex-wrap:wrap;}
+.saved-banner{
+  display:flex;align-items:center;gap:10px;background:var(--grad-soft);border:1px solid rgba(140,111,234,.28);
+  padding:14px 18px;border-radius:14px;font-size:14px;color:var(--ink-soft);margin-bottom:32px;
+}
+.timeline{position:relative;}
+.day-block{border-radius:var(--radius-m);border:1px solid var(--border);margin-bottom:18px;overflow:hidden;background:var(--surface);}
+.day-head{display:flex;align-items:center;gap:18px;padding:22px 26px;cursor:pointer;}
+.day-badge{
+  width:44px;height:44px;border-radius:50%;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-weight:650;font-size:17px;flex-shrink:0;
+}
+.day-head h3{font-size:20px;flex:1;}
+.day-chevron{width:20px;height:20px;color:var(--ink-faint);transition:transform .3s var(--ease);flex-shrink:0;}
+.day-block.open .day-chevron{transform:rotate(180deg);}
+.day-body{max-height:0;overflow:hidden;transition:max-height .45s var(--ease);}
+.day-block.open .day-body{max-height:2000px;}
+.day-body-inner{padding:0 26px 26px 88px;display:flex;flex-direction:column;gap:20px;}
+.period{}
+.period-label{font-weight:700;font-size:13px;color:var(--red);margin-bottom:10px;}
+.activity{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-radius:12px;
+  background:var(--bg-alt);margin-bottom:8px;transition:background .2s;
+}
+.activity:hover{background:#EAE9E4;}
+.activity-name{font-weight:600;font-size:15px;}
+.activity-more{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ink-faint);transition:transform .25s;flex-shrink:0;}
+.activity.open .activity-more{transform:rotate(45deg);}
+.activity-detail{
+  grid-column:1/-1;max-height:0;overflow:hidden;transition:max-height .35s var(--ease);font-size:13.5px;color:var(--ink-soft);
+  width:100%;
+}
+.activity-wrap{display:flex;flex-direction:column;}
+.activity-detail-inner{padding:10px 16px 4px;}
+
+/* ---- Transport ---- */
+.transport-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:64px;}
+@media(max-width:800px){.transport-grid{grid-template-columns:1fr;}}
+.transport-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-m);padding:32px 28px;transition:transform .35s var(--ease),box-shadow .35s var(--ease);}
+.transport-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);}
+.transport-icon{width:56px;height:56px;border-radius:16px;background:var(--grad-soft);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:20px;}
+.transport-card h3{font-size:21px;margin-bottom:10px;}
+.transport-card p{color:var(--ink-soft);font-size:15px;}
+.smarter{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-l);padding:44px;}
+@media(max-width:600px){.smarter{padding:28px 22px;}}
+.smarter h3{font-size:24px;margin-bottom:22px;}
+.smarter-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 28px;}
+@media(max-width:640px){.smarter-grid{grid-template-columns:1fr;}}
+.smarter-item{display:flex;gap:12px;align-items:flex-start;}
+.smarter-dot{width:8px;height:8px;border-radius:50%;background:var(--red);margin-top:8px;flex-shrink:0;}
+.smarter-item p{font-size:14.5px;color:var(--ink-soft);}
+
+/* ---- Travel tips ---- */
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;}
+.tip-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-m);padding:26px 26px 22px;}
+.tip-top{display:flex;align-items:center;gap:14px;cursor:pointer;}
+.tip-emoji{font-size:24px;width:46px;height:46px;border-radius:12px;background:var(--bg-alt);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.tip-top h4{font-size:16.5px;flex:1;font-family:var(--sans);font-weight:700;}
+.tip-top p.tip-short{grid-column:1/-1;}
+.tip-toggle{font-size:13px;font-weight:700;color:var(--red);display:flex;align-items:center;gap:5px;flex-shrink:0;}
+.tip-short{font-size:14.5px;color:var(--ink-soft);margin:14px 0 0;}
+.tip-more{max-height:0;overflow:hidden;transition:max-height .4s var(--ease);}
+.tip-card.open .tip-more{max-height:200px;margin-top:12px;}
+.tip-more p{font-size:14px;color:var(--ink-soft);padding-top:12px;border-top:1px solid var(--border);}
+
+/* ---- Modal ---- */
+.modal-overlay{
+  position:fixed;inset:0;z-index:1300;background:rgba(14,15,18,.6);backdrop-filter:blur(4px);
+  display:flex;align-items:center;justify-content:center;padding:24px;
+  opacity:0;pointer-events:none;transition:opacity .3s var(--ease);
+}
+.modal-overlay.open{opacity:1;pointer-events:auto;}
+.modal{
+  background:var(--surface);border-radius:var(--radius-l);max-width:820px;width:100%;max-height:88vh;overflow-y:auto;
+  transform:translateY(20px) scale(.98);transition:transform .35s var(--ease);
+}
+.modal-overlay.open .modal{transform:translateY(0) scale(1);}
+.modal-hero{position:relative;aspect-ratio:16/8;}
+.modal-hero .media{position:absolute;inset:0;}
+.modal-hero .grad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,.75) 100%);}
+.modal-close{
+  position:absolute;top:18px;right:18px;width:38px;height:38px;border-radius:50%;background:rgba(20,20,25,.4);
+  backdrop-filter:blur(4px);color:#fff;display:flex;align-items:center;justify-content:center;z-index:2;
+}
+.modal-close:hover{background:rgba(20,20,25,.6);}
+.modal-hero-text{position:absolute;left:0;right:0;bottom:0;padding:30px 36px;color:#fff;}
+.modal-hero-text .mh-cat{font-size:12.5px;font-weight:700;color:rgba(255,255,255,.75);margin-bottom:8px;}
+.modal-hero-text h2{font-size:clamp(26px,4vw,38px);color:#fff;}
+.modal-body{padding:32px 36px 40px;}
+.modal-body p.desc{font-size:16.5px;color:var(--ink-soft);margin-bottom:28px;max-width:64ch;}
+.modal-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:30px;}
+@media(max-width:560px){.modal-meta{grid-template-columns:1fr 1fr;}}
+.mm-item{background:var(--bg-alt);border-radius:14px;padding:16px 18px;}
+.mm-item .mm-label{font-size:11.5px;color:var(--ink-faint);font-weight:700;margin-bottom:4px;}
+.mm-item .mm-value{font-size:14.5px;font-weight:700;}
+.modal-body h4.hi{font-size:15px;font-weight:700;margin-bottom:12px;}
+.highlight-list{display:flex;flex-direction:column;gap:9px;margin-bottom:30px;}
+.highlight-list li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--ink-soft);}
+.highlight-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--red);margin-top:8px;flex-shrink:0;}
+.modal-mini-map{
+  border-radius:16px;background:linear-gradient(160deg,#12141a,#1c2036 55%,#241a2c);padding:18px 20px;
+  display:flex;align-items:center;gap:14px;color:#fff;margin-bottom:26px;
+}
+.modal-mini-map svg{width:30px;height:30px;flex-shrink:0;color:var(--red);}
+.modal-mini-map .mm-title{font-weight:700;font-size:14.5px;margin-bottom:2px;}
+.modal-mini-map .mm-sub{font-size:12.5px;color:rgba(255,255,255,.65);}
+.modal-actions{display:flex;gap:12px;flex-wrap:wrap;}
+
+/* ---- Favorites drawer ---- */
+.drawer-overlay{
+  position:fixed;inset:0;z-index:1250;background:rgba(14,15,18,.5);opacity:0;pointer-events:none;transition:opacity .3s var(--ease);
+}
+.drawer-overlay.open{opacity:1;pointer-events:auto;}
+.drawer{
+  position:fixed;top:0;right:0;bottom:0;width:400px;max-width:92vw;background:var(--surface);z-index:1260;
+  transform:translateX(100%);transition:transform .4s var(--ease);display:flex;flex-direction:column;box-shadow:var(--shadow-lg);
+}
+.drawer.open{transform:translateX(0);}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:24px 26px;border-bottom:1px solid var(--border);}
+.drawer-head h3{font-size:22px;}
+.drawer-list{flex:1;overflow-y:auto;padding:16px;}
+.drawer-item{display:flex;gap:14px;padding:12px;border-radius:14px;transition:background .2s;align-items:center;}
+.drawer-item:hover{background:var(--bg-alt);}
+.drawer-item .di-thumb{width:64px;height:64px;border-radius:12px;overflow:hidden;flex-shrink:0;position:relative;background:var(--grad-soft);}
+.drawer-item .di-thumb img{width:100%;height:100%;object-fit:cover;}
+.drawer-item .di-info{flex:1;min-width:0;}
+.drawer-item h4{font-size:15px;margin-bottom:2px;}
+.drawer-item p{font-size:12.5px;color:var(--ink-faint);}
+.drawer-empty{padding:60px 30px;text-align:center;color:var(--ink-faint);}
+.drawer-empty .de-icon{width:44px;height:44px;margin:0 auto 16px;color:var(--ink-faint);}
+.drawer-empty .de-icon svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round;}
+
+/* ---- Toast ---- */
+#toastHost{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:1500;display:flex;flex-direction:column;gap:10px;align-items:center;}
+.toast{
+  background:var(--ink);color:#fff;padding:13px 22px;border-radius:100px;font-size:14px;font-weight:600;
+  box-shadow:var(--shadow-md);opacity:0;transform:translateY(10px);transition:opacity .3s var(--ease),transform .3s var(--ease);
+  display:flex;align-items:center;gap:8px;
+}
+.toast.show{opacity:1;transform:translateY(0);}
+
+/* ============ FLOATING AI CHAT BUTTON ============
+   The wrap is the ONLY thing that carries fixed positioning, sized to
+   nothing but the button itself — so the icon's distance from the
+   corner is always exactly right/bottom below, never shifted by the
+   tooltip label (which is absolutely positioned and reserves no space
+   of its own, even while hidden). */
+.ai-fab-wrap{
+  position:fixed;right:24px;bottom:24px;z-index:850;
+}
+.ai-fab{
+  width:58px;height:58px;border-radius:50%;position:relative;
+  display:flex;align-items:center;justify-content:center;color:#fff;
+  background:linear-gradient(135deg,var(--red) 0%,#8C6FEA 100%);
+  box-shadow:0 14px 30px -10px rgba(140,111,234,.55),0 6px 16px -4px rgba(200,39,43,.4);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+}
+.ai-fab svg{width:24px;height:24px;}
+.ai-fab:hover,.ai-fab:focus-visible{
+  transform:scale(1.08);
+  box-shadow:0 18px 38px -8px rgba(140,111,234,.62),0 8px 20px -4px rgba(200,39,43,.48);
+}
+.ai-fab:active{transform:scale(.93);}
+.ai-fab:focus-visible{outline:2px solid #fff;outline-offset:3px;}
+
+/* Tooltip: absolutely positioned to the LEFT of the icon, vertically
+   centered, with a small gap. Hidden state sits slightly closer to the
+   icon (translateX) and fades/slides out to its full resting position
+   on reveal — never affects the icon's own position. A translucent,
+   blurred "glass" surface keeps it feeling premium and minimal. */
+.ai-fab-label{
+  position:absolute;top:50%;right:calc(100% + 14px);
+  display:flex;align-items:center;gap:5px;
+  background:rgba(22,24,28,.82);backdrop-filter:blur(14px) saturate(1.5);-webkit-backdrop-filter:blur(14px) saturate(1.5);
+  color:#fff;font-size:13.5px;font-weight:600;letter-spacing:.01em;
+  padding:12px 20px;border-radius:100px;white-space:nowrap;
+  box-shadow:0 10px 28px -8px rgba(0,0,0,.4),0 2px 8px -1px rgba(0,0,0,.25);
+  border:1px solid rgba(255,255,255,.08);
+  opacity:0;transform:translateY(-50%) translateX(10px) scale(.98);pointer-events:none;
+  transition:opacity .3s var(--ease),transform .3s var(--ease);
+}
+.ai-fab-wrap.label-visible .ai-fab-label{opacity:1;transform:translateY(-50%) translateX(0) scale(1);}
+
+@media(max-width:640px){
+  .ai-fab-wrap{right:16px;bottom:16px;}
+  .ai-fab{width:50px;height:50px;}
+  .ai-fab svg{width:20px;height:20px;}
+  .ai-fab-label{display:none;}
+}
+
+/* ---- Footer ---- */
+footer{background:var(--ink);color:rgba(255,255,255,.7);padding:70px 0 30px;}
+.footer-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:50px;}
+.footer-brand .logo{color:#fff;font-size:18px;margin-bottom:14px;}
+.footer-brand p{max-width:320px;font-size:14.5px;color:rgba(255,255,255,.55);}
+.footer-links{display:flex;gap:60px;flex-wrap:wrap;}
+.footer-col h5{font-size:13.5px;color:rgba(255,255,255,.42);margin-bottom:16px;font-weight:700;font-family:var(--serif);font-style:italic;font-weight:450;}
+.footer-col a{display:block;font-size:14.5px;color:rgba(255,255,255,.75);margin-bottom:12px;transition:color .2s;}
+.footer-col a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:26px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.copyright{font-size:13px;color:rgba(255,255,255,.4);}
+
+/* CTA band */
+.cta-band{
+  background:linear-gradient(135deg,#191b22 0%,#241a2c 60%,#2a1c22 100%);border-radius:var(--radius-l);
+  padding:64px 56px;display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;color:#fff;
+}
+@media(max-width:700px){.cta-band{padding:44px 30px;}}
+.cta-band h3{font-size:clamp(24px,3.4vw,36px);max-width:460px;color:#fff;}
+.cta-band p{color:rgba(255,255,255,.65);margin-top:10px;font-size:15px;}
+</style>
+</head>
+<body>
+<a href="#page-home" class="skip-link">Skip to content</a>
+
+<!-- ============ NAVBAR ============ -->
+<header id="navbar">
+  <div class="container nav-inner">
+    <a href="#home" class="logo" data-nav="home">DISCOVER<span> SINGAPORE</span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#home" data-nav="home">Home</a>
+      <a href="#explore" data-nav="explore">Explore</a>
+      <a href="#food" data-nav="food">Food</a>
+      <a href="#itinerary" data-nav="itinerary">Itinerary</a>
+      <a href="#transport" data-nav="transport">Transport</a>
+      <a href="#tips" data-nav="tips">Travel Tips</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="searchBtn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </button>
+      <button class="icon-btn" id="favBtn" aria-label="Favorites">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+        <span class="fav-count" id="favCount" style="display:none;">0</span>
+      </button>
+      <button class="hamburger" id="menuBtn" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div id="mobileMenu">
+  <div class="mm-top">
+    <span class="logo">DISCOVER<span> SINGAPORE</span></span>
+    <button class="mm-close" id="mmClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <nav>
+    <a href="#home" data-nav="home">Home</a>
+    <a href="#explore" data-nav="explore">Explore</a>
+    <a href="#food" data-nav="food">Food</a>
+    <a href="#itinerary" data-nav="itinerary">Itinerary</a>
+    <a href="#transport" data-nav="transport">Transport</a>
+    <a href="#tips" data-nav="tips">Travel Tips</a>
+  </nav>
+  <p class="mm-foot">Your guide to discovering the best of Singapore.</p>
+</div>
+
+<!-- Search overlay -->
+<div id="searchOverlay">
+  <div class="search-panel">
+    <div class="search-input-row">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="searchInput" type="text" placeholder="Search attractions, food, neighbourhoods…" autocomplete="off">
+      <button class="search-close" id="searchClose" aria-label="Close search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div id="searchResults"><p class="search-hint">Try "Gardens by the Bay", "laksa" or "Chinatown".</p></div>
+  </div>
+</div>
+
+<main tabindex="-1">
+
+<!-- ============ HOME ============ -->
+<section id="page-home" class="page active">
+
+  <div class="hero">
+    <div class="media-bg">
+      <img
+        src="https://commons.wikimedia.org/wiki/Special:FilePath/Night%20view%20of%20MBS.jpg?width=1920"
+        alt="Marina Bay Sands and the Singapore skyline at night"
+        data-fb="0"
+        onerror="if(this.dataset.fb==='0'){this.dataset.fb='1';this.src='https://commons.wikimedia.org/wiki/Special:FilePath/Marina-bay-sands-wikipedia.jpg?width=1920';}else{this.classList.add('broken')}"
+      >
+    </div>
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Discover Singapore</h1>
+      <p class="subtitle">Where the future meets tradition.</p>
+      <p class="desc">Explore a city where futuristic architecture, diverse cultures, incredible food, and unforgettable experiences come together.</p>
+      <div class="hero-actions">
+        <a href="#explore" class="btn btn-primary">Explore Singapore</a>
+        <a href="#itinerary" class="btn btn-ghost">Plan Your Trip</a>
+      </div>
+    </div>
+    <div class="scroll-cue"><span>SCROLL</span><span class="stick"></span></div>
+  </div>
+
+  <!-- Quick intro -->
+  <div class="section">
+    <div class="container intro-grid">
+      <div class="reveal">
+        <h2>A small island.<br>Endless experiences.</h2>
+        <p>Singapore is a modern city-state where a gleaming, future-facing skyline sits a few streets from century-old shophouses. Multicultural neighbourhoods, world-class attractions, an obsession-worthy food scene, and more green space than you'd expect from a city make it one of the most rewarding places in Southeast Asia to explore on foot.</p>
+      </div>
+      <div class="feature-cards reveal">
+        <div class="feature-card"><span class="fc-emoji">🏙️</span><h4>Modern City</h4><p>Striking architecture and a skyline unlike anywhere else.</p></div>
+        <div class="feature-card"><span class="fc-emoji">🌿</span><h4>Green Spaces</h4><p>Gardens, reservoirs and rainforest inside the city limits.</p></div>
+        <div class="feature-card"><span class="fc-emoji">🍜</span><h4>Incredible Food</h4><p>Hawker centres serving some of Asia's best cooking.</p></div>
+        <div class="feature-card"><span class="fc-emoji">🌏</span><h4>Diverse Culture</h4><p>Chinese, Malay, Indian and colonial heritage side by side.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured destinations -->
+  <div class="section section-alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Must-visit Singapore</h2>
+        <p class="lede">The landmarks everyone should see at least once.</p>
+      </div>
+      <div class="featured-strip reveal" id="featuredStrip"></div>
+    </div>
+  </div>
+
+  <!-- Experience Singapore — featured video -->
+  <div class="section experience-section">
+    <div class="container">
+      <div class="experience-head reveal">
+        <h2>Experience Singapore</h2>
+        <p class="exp-subtitle">Watch Singapore come to life.</p>
+        <p>Experience the energy, beauty, culture, architecture, and unforgettable atmosphere of Singapore through our featured travel film.</p>
+      </div>
+      <div class="video-frame reveal" id="videoFrame">
+        <img
+          id="videoThumb"
+          src="https://i.ytimg.com/vi/tS5oVd0Uvsc/maxresdefault.jpg"
+          alt="Experience Singapore — featured travel film thumbnail"
+          loading="lazy"
+          onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='https://i.ytimg.com/vi/tS5oVd0Uvsc/hqdefault.jpg';}else{this.style.display='none';}"
+        >
+        <div class="v-overlay"></div>
+        <button class="play-btn" id="playVideoBtn" aria-label="Play: Experience Singapore travel film">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden gems -->
+  <div class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Beyond the tourist spots</h2>
+        <p class="lede">Discover another side of Singapore.</p>
+      </div>
+      <div class="gems-wrap reveal" id="gemsWrap"></div>
+    </div>
+  </div>
+
+  <!-- Interactive map -->
+  <div class="section section-alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Explore Singapore on the map</h2>
+        <p class="lede">Tap a pin to preview a location, then view the full details.</p>
+      </div>
+      <div class="map-filter-row reveal" id="mapFilterRow"></div>
+      <div class="map-wrap reveal" id="mapWrap">
+        <svg class="island" viewBox="0 0 100 62" preserveAspectRatio="none">
+          <path d="M6,30 C4,20 14,10 26,9 C34,8 40,14 48,12 C58,10 64,3 74,5 C86,7 94,16 93,26 C92,34 84,33 80,38 C76,44 78,52 68,54 C58,56 54,48 46,49 C38,50 34,57 24,55 C14,53 8,46 6,38 Z" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.16)" stroke-width="0.4"/>
+        </svg>
+        <div id="mapPins"></div>
+        <div class="map-legend">Singapore — not to scale</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="cta-band reveal">
+        <div>
+          <h3>Ready to put it all together?</h3>
+          <p>Build a day-by-day plan in seconds with our itinerary planner.</p>
+        </div>
+        <a href="#itinerary" class="btn btn-primary">Plan Your Trip</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPLORE ============ -->
+<section id="page-explore" class="page">
+  <div class="section" style="padding-top:150px;">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Explore Singapore</h2>
+        <p class="lede">From iconic landmarks to hidden cultural streets.</p>
+      </div>
+      <div class="tab-row" id="exploreTabs">
+        <button class="tab active" data-cat="all">All</button>
+        <button class="tab" data-cat="Iconic Attractions">Iconic Attractions</button>
+        <button class="tab" data-cat="Entertainment">Entertainment</button>
+        <button class="tab" data-cat="Culture & History">Culture &amp; History</button>
+        <button class="tab" data-cat="Nature">Nature</button>
+      </div>
+      <div class="grid" id="exploreGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOD ============ -->
+<section id="page-food" class="page">
+  <div class="section" style="padding-top:150px;">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Taste Singapore</h2>
+        <p class="lede">Discover the flavors that make Singapore unforgettable.</p>
+      </div>
+      <div class="food-grid" id="foodGrid"></div>
+    </div>
+  </div>
+  <div class="section section-alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Eat like a local</h2>
+        <p class="lede">Hawker centres are the heart of Singaporean food culture — dozens of stalls, one shared table.</p>
+      </div>
+      <div class="hawker-grid" id="hawkerGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ITINERARY ============ -->
+<section id="page-itinerary" class="page">
+  <div class="section" style="padding-top:150px;">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Plan your Singapore trip</h2>
+        <p class="lede">Make the most of every day.</p>
+      </div>
+      <div class="itin-head-row">
+        <div class="duration-tabs" id="durationTabs">
+          <button data-days="1">1 Day</button>
+          <button data-days="3" class="active">3 Days</button>
+          <button data-days="5">5 Days</button>
+        </div>
+      </div>
+      <div id="savedBanner"></div>
+      <div class="timeline" id="itinTimeline"></div>
+      <div class="itin-actions">
+        <button class="btn btn-primary" id="saveItinBtn">Save This Itinerary</button>
+        <a href="#explore" class="btn btn-outline">Start Exploring</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRANSPORT ============ -->
+<section id="page-transport" class="page">
+  <div class="section" style="padding-top:150px;">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Getting around Singapore</h2>
+        <p class="lede">Fast, clean, and easy to navigate — even for first-time visitors.</p>
+      </div>
+      <div class="transport-grid reveal">
+        <div class="transport-card"><div class="transport-icon">🚇</div><h3>MRT</h3><p>The fastest and easiest way to explore Singapore. Trains run every few minutes and reach almost every major attraction.</p></div>
+        <div class="transport-card"><div class="transport-icon">🚌</div><h3>Bus</h3><p>A convenient way to reach more neighbourhoods and attractions that sit slightly off the MRT network.</p></div>
+        <div class="transport-card"><div class="transport-icon">🚕</div><h3>Taxi &amp; Ride-Hailing</h3><p>Perfect for convenient point-to-point travel, especially late at night or with luggage.</p></div>
+      </div>
+      <div class="smarter reveal">
+        <h3>Travel smarter</h3>
+        <div class="smarter-grid">
+          <div class="smarter-item"><span class="smarter-dot"></span><p>Get an EZ-Link or contactless bank card — one tap works on MRT and buses.</p></div>
+          <div class="smarter-item"><span class="smarter-dot"></span><p>Avoid the 6–9pm weekday rush on the North-South and East-West lines.</p></div>
+          <div class="smarter-item"><span class="smarter-dot"></span><p>Ride-hailing apps are often cheaper than street-hailed taxis at peak hours.</p></div>
+          <div class="smarter-item"><span class="smarter-dot"></span><p>Most attractions are a short, shaded walk from the nearest MRT exit.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRAVEL TIPS ============ -->
+<section id="page-tips" class="page">
+  <div class="section" style="padding-top:150px;">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Know before you go</h2>
+        <p class="lede">A few essentials so you can spend less time planning and more time exploring.</p>
+      </div>
+      <div class="tips-grid" id="tipsGrid"></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ DESTINATION MODAL ============ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modalCard" role="dialog" aria-modal="true"></div>
+</div>
+
+<!-- ============ FAVORITES DRAWER ============ -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<div class="drawer" id="favDrawer">
+  <div class="drawer-head">
+    <h3>My Favorites</h3>
+    <button class="icon-btn" id="drawerClose" style="color:var(--ink);" aria-label="Close favorites">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="drawer-list" id="drawerList"></div>
+</div>
+
+<div id="toastHost"></div>
+
+<!-- ============ FLOATING AI CHAT BUTTON (global, appears on every page) ============ -->
+<div class="ai-fab-wrap" id="aiFabWrap">
+  <a
+    href="https://chatgpt.com"
+    id="aiFabBtn"
+    class="ai-fab"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Discover more with ChatGPT — opens in a new tab"
+  >
+    <span class="ai-fab-label" id="aiFabLabel" aria-hidden="true">Discover More with ChatGPT <span>✨</span></span>
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 2.5l1.8 5.2 5.2 1.8-5.2 1.8L12 17.5l-1.8-5.2-5.2-1.8 5.2-1.8L12 2.5z" fill="currentColor"/>
+      <path d="M19 14.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z" fill="currentColor"/>
+    </svg>
+  </a>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">DISCOVER<span> SINGAPORE</span></div>
+        <p>Your guide to discovering the best of Singapore.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Guide</h5>
+          <a href="#explore" data-nav="explore">Explore</a>
+          <a href="#food" data-nav="food">Food</a>
+          <a href="#itinerary" data-nav="itinerary">Itinerary</a>
+        </div>
+        <div class="footer-col">
+          <h5>Practical</h5>
+          <a href="#transport" data-nav="transport">Transport</a>
+          <a href="#tips" data-nav="tips">Travel Tips</a>
+          <a href="#home" data-nav="home">Home</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="copyright">© 2026 Discover Singapore. A travel guide concept.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+
+/* ================= DATA ================= */
+const D = {
+  destinations: [
+    {id:"marina-bay-sands",name:"Marina Bay Sands",category:"Iconic Attractions",emoji:"🏙️",
+      img:"Marina-bay-sands-wikipedia.jpg",
+      short:"The iconic three-tower resort crowned by an infinity pool overlooking the whole city.",
+      desc:"Marina Bay Sands is the single most photographed building in Singapore — three towers connected by a ship-shaped SkyPark, with an infinity pool that seems to spill into the skyline. Even if you're not staying there, the observation deck and the mall's canal boat rides are worth the visit.",
+      highlights:["Infinity pool views from the SkyPark Observation Deck","Free light-and-water show, Spectra, most evenings","ArtScience Museum's lotus-flower silhouette next door","High-end shopping along the indoor canal"],
+      bestTime:"Sunset, 6:30–7:30pm",duration:"2–3 hours",mrt:"Bayfront (CE1/DT16)"},
+    {id:"merlion-park",name:"Merlion Park",category:"Iconic Attractions",emoji:"🦁",
+      img:"Merlion statue, Merlion Park, Singapore - 20110723.jpg",
+      short:"Singapore's half-lion, half-fish mascot, spouting water into the bay.",
+      desc:"A short waterfront park anchored by the Merlion statue, Singapore's national symbol — a lion's head on a fish's body. It's small, but the view across the water to Marina Bay Sands and the CBD skyline makes it one of the best photo spots in the city.",
+      highlights:["Classic photo op with Marina Bay Sands in the background","Free to visit, open 24 hours","A five-minute stroll from Raffles Place","Great starting point for a Marina Bay walk"],
+      bestTime:"Early morning or after sunset",duration:"20–30 minutes",mrt:"Raffles Place (EW14/NS26)"},
+    {id:"gardens-by-the-bay",name:"Gardens by the Bay",category:"Iconic Attractions",emoji:"🌳",
+      img:"Supertree Grove, Singapore.jpg",
+      short:"Futuristic Supertrees, climate-controlled domes and a nightly light show.",
+      desc:"A 101-hectare nature park built around Supertree Grove — towering, plant-covered structures that light up after dark — plus the Flower Dome and Cloud Forest, two of the world's largest glass conservatories.",
+      highlights:["Garden Rhapsody light-and-sound show nightly at 7:45pm & 8:45pm","OCBC Skyway walkway between the Supertrees","Cloud Forest's 35-metre indoor waterfall","Flower Dome's rotating seasonal displays"],
+      bestTime:"Late afternoon into the evening show",duration:"3–4 hours",mrt:"Bayfront (CE1/DT16)"},
+    {id:"singapore-flyer",name:"Singapore Flyer",category:"Iconic Attractions",emoji:"🎡",
+      img:"Singapore Flyer.JPG",
+      short:"One of the world's largest observation wheels, with sweeping skyline views.",
+      desc:"A 165-metre giant observation wheel on the edge of Marina Bay. A single rotation takes about half an hour, giving unbroken views over the CBD, the bay, and — on a clear day — across the Strait toward Indonesia.",
+      highlights:["30-minute rotation with air-conditioned capsules","Best visibility on clear evenings","Dining flights available for special occasions","Located beside Kallang River and the Float"],
+      bestTime:"Clear evenings, just before sunset",duration:"45 minutes",mrt:"Promenade (CC4/DT15)"},
+    {id:"universal-studios",name:"Universal Studios Singapore",category:"Entertainment",emoji:"🎢",
+      img:"Universal Studios Singapore globe (125026).jpg",
+      short:"Southeast Asia's only Universal Studios park, spread across seven movie-themed zones.",
+      desc:"A full-day theme park on Sentosa Island with rides based on Jurassic Park, Transformers, Shrek and more, including two record-setting rollercoasters and regular parades.",
+      highlights:["Battlestar Galactica dueling rollercoasters","Revenge of the Mummy's indoor thrill ride","Character meet-and-greets throughout the day","Minion Land for younger visitors"],
+      bestTime:"Weekday mornings, gates open",duration:"Full day",mrt:"HarbourFront (NE1/CC29) + Sentosa Express"},
+    {id:"sentosa-island",name:"Sentosa Island",category:"Entertainment",emoji:"🏝️",
+      img:"Siloso Beach, Sentosa.JPG",
+      short:"A resort island of beaches, theme parks and cable cars just off the mainland.",
+      desc:"Singapore's dedicated leisure island — white-sand beaches, Universal Studios, an aquarium, a cable car, and Wings of Time, a nightly beachfront laser show. Easy to reach and easy to spend a whole day exploring.",
+      highlights:["Siloso, Palawan and Tanjong beaches","Cable car ride from Mount Faber or HarbourFront","Wings of Time laser and water show after dark","Skyline Luge for a quick adrenaline hit"],
+      bestTime:"Any day, plan for sunset on the beach",duration:"Full day",mrt:"HarbourFront (NE1/CC29) + Sentosa Express"},
+    {id:"sea-aquarium",name:"S.E.A. Aquarium",category:"Entertainment",emoji:"🐠",
+      img:"Open Ocean, S.E.A. Aquarium, Marine Life Park, Resorts World Sentosa, Singapore - 20130105-02.JPG",
+      short:"One of the world's largest aquariums, home to over 100,000 marine animals.",
+      desc:"Part of Resorts World Sentosa, the S.E.A. Aquarium walks visitors through more than 50 habitats, ending at the Open Ocean tank with its enormous acrylic viewing panel.",
+      highlights:["Open Ocean habitat's 36-metre wide viewing panel","Shark Seas zone with over 20 shark species","Feeding sessions throughout the day","Combine with Adventure Cove Waterpark next door"],
+      bestTime:"Weekday afternoons, less crowded",duration:"2–3 hours",mrt:"HarbourFront (NE1/CC29) + Sentosa Express"},
+    {id:"chinatown",name:"Chinatown",category:"Culture & History",emoji:"🏮",
+      img:"Pagoda Street Chinatown Singapore.jpg",
+      short:"Red lanterns, incense, shophouses and Singapore's best hawker food under one roof.",
+      desc:"Once the heart of Singapore's early Chinese immigrant community, Chinatown today mixes restored shophouses, temples, traditional medicine shops and Maxwell Food Centre — one of the city's most famous hawker centres.",
+      highlights:["Sri Mariamman Temple, Singapore's oldest Hindu temple","Buddha Tooth Relic Temple's ornate interior","Maxwell Food Centre for Michelin-listed hawker food","Streets strung with lanterns for Chinese New Year"],
+      bestTime:"Late afternoon into dinner",duration:"2–3 hours",mrt:"Chinatown (NE4/DT19)"},
+    {id:"little-india",name:"Little India",category:"Culture & History",emoji:"🕌",
+      img:"Serangoon Road, Little India, Singapore.jpg",
+      short:"Spice-scented streets, gold shops and vivid Hindu temples.",
+      desc:"A dense, colourful neighbourhood built around the Indian community, with garland stalls, spice merchants and the ornate Sri Veeramakaliamman Temple. Tekka Centre is the go-to spot for South Indian food.",
+      highlights:["Sri Veeramakaliamman Temple's carved gopuram","Tekka Centre for banana-leaf meals","Mustafa Centre, open 24 hours for shopping","Deepavali light-ups in October/November"],
+      bestTime:"Morning, before the midday heat",duration:"1.5–2 hours",mrt:"Little India (NE7/DT12)"},
+    {id:"kampong-glam",name:"Kampong Glam",category:"Culture & History",emoji:"🕌",
+      img:"Masjid Sultan (Sultan Mosque).jpg",
+      short:"Singapore's Malay-Muslim quarter, anchored by the golden-domed Sultan Mosque.",
+      desc:"Home to the Sultan Mosque and the old Istana Kampong Glam, this district blends Malay heritage with Arab Street's textile and perfume shops and Haji Lane's boutique cafes.",
+      highlights:["Sultan Mosque's golden dome","Arab Street's fabric and rug shops","Malay Heritage Centre exhibits","Rooftop cafes with mosque views"],
+      bestTime:"Late morning to afternoon",duration:"1.5–2 hours",mrt:"Bugis (EW12/DT14)"},
+    {id:"haji-lane",name:"Haji Lane",category:"Culture & History",emoji:"🎨",
+      img:"Haji Lane, Kampong Glam (02).jpg",
+      short:"A narrow, mural-covered lane of indie boutiques and coffee shops.",
+      desc:"One of Singapore's shortest streets and biggest personalities — wall-to-wall street art, vintage stores and tucked-away cafes just steps from Sultan Mosque.",
+      highlights:["Ever-changing street art and murals","Independent fashion boutiques","Cafes tucked into old shophouses","Best explored slowly, on foot"],
+      bestTime:"Afternoon into golden hour",duration:"1 hour",mrt:"Bugis (EW12/DT14)"},
+    {id:"jewel-changi",name:"Jewel Changi Airport",category:"Nature",emoji:"💧",
+      img:"HSBC Rain Vortex in Jewel Changi Airport.jpg",
+      short:"A glass dome built around the world's tallest indoor waterfall — inside an airport.",
+      desc:"Jewel turns a transit stop into a destination: a 40-metre indoor waterfall, the Rain Vortex, ringed by a terraced forest, plus shops, restaurants and a canopy park with mazes and net bridges.",
+      highlights:["Rain Vortex light show after dark","Canopy Park's hedge maze and walking net","Shiseido Forest Valley's terraced greenery","Open even if you're not flying anywhere"],
+      bestTime:"Evening, for the light show",duration:"1.5–2 hours",mrt:"Changi Airport (CG2)"},
+    {id:"botanic-gardens",name:"Singapore Botanic Gardens",category:"Nature",emoji:"🌸",
+      img:"Alley lined with vegetated arches at the National Orchid Garden of Singapore - cropped.jpg",
+      short:"A UNESCO World Heritage rainforest garden with a world-famous orchid collection.",
+      desc:"Singapore's oldest garden and its only UNESCO World Heritage Site — 82 hectares of rainforest, lakes and lawns, plus the National Orchid Garden's 1,000-plus orchid species.",
+      highlights:["National Orchid Garden, Southeast Asia's largest orchid display","Swan Lake and the century-old rain trees","Free entry, apart from the Orchid Garden","Shaded, flat paths good for a slow morning"],
+      bestTime:"Early morning",duration:"2–3 hours",mrt:"Botanic Gardens (CC19/DT9)"},
+    {id:"macritchie-reservoir",name:"MacRitchie Reservoir",category:"Nature",emoji:"🌲",
+      img:"Treetop Walk in MacRitchie Nature Trail, Singapore.jpg",
+      short:"Rainforest trails and a treetop walk minutes from the city centre.",
+      desc:"A reservoir park ringed by primary rainforest, popular with joggers, kayakers and long-tailed macaques. The TreeTop Walk, a 250-metre suspension bridge, is the highlight for most first-time visitors.",
+      highlights:["TreeTop Walk suspension bridge (weekends only, arrive early)","Kayaking and canoeing on the reservoir","Boardwalk trails good for spotting monitor lizards","Genuine rainforest, all within city limits"],
+      bestTime:"Early morning, cooler and quieter",duration:"2–4 hours",mrt:"Caldecott (CC17/TE9), then a short walk"}
+  ],
+
+  food: [
+    {id:"chicken-rice",name:"Hainanese Chicken Rice",emoji:"🍚",img:"Hainanese chicken rice in Singapore.jpg",
+      type:"National dish",desc:"Poached chicken, fragrant rice cooked in chicken fat and stock, served with chilli-ginger sauce.",
+      rec:"Try it at a hawker centre stall with a long lunchtime queue — that's the giveaway."},
+    {id:"chilli-crab",name:"Chilli Crab",emoji:"🦀",img:"Chilli crab-01.jpg",
+      type:"Seafood icon",desc:"Whole mud crab in a thick, sweet-and-spicy tomato-chilli gravy, made for mopping up with fried mantou buns.",
+      rec:"Order it for the table and ask for extra mantou — you'll want them."},
+    {id:"laksa",name:"Laksa",emoji:"🍜",img:"Bowl of Katong Laksa.jpg",
+      type:"Noodle soup",desc:"Rice noodles in a rich, spiced coconut-curry broth with prawns, fish cake and cockles.",
+      rec:"Katong laksa is the version to seek out — traditionally eaten with a spoon only, no chopsticks."},
+    {id:"kaya-toast",name:"Kaya Toast",emoji:"🥪",img:"Kaya toast dip into soft boiled egg.jpg",
+      type:"Breakfast staple",desc:"Charcoal-grilled toast with coconut-pandan jam and cold butter, served with soft-boiled eggs and coffee.",
+      rec:"Best at an old-school kopitiam first thing in the morning."}
+  ],
+
+  hawkers: [
+    {id:"maxwell",name:"Maxwell Food Centre",img:"Maxwell Food Centre - 2022-08-13.jpg",
+      desc:"A Chinatown institution with over 100 stalls, including a Michelin-recognised chicken rice counter."},
+    {id:"laupasat",name:"Lau Pa Sat",img:"Interior of Lau Pa Sat, 2018 (03).jpg",
+      desc:"A restored Victorian cast-iron market in the CBD — by night, the street outside closes for satay stalls."}
+  ],
+
+  hiddenGems: [
+    {id:"haji-lane",name:"Haji Lane",img:"Haji Lane, Kampong Glam (02).jpg",
+      short:"A narrow, mural-covered lane of indie boutiques.",
+      desc:"One of Singapore's shortest streets and biggest personalities — wall-to-wall street art, vintage stores and tucked-away cafes just steps from Sultan Mosque.",
+      highlights:["Ever-changing street art and murals","Independent fashion boutiques","Cafes tucked into old shophouses"],
+      bestTime:"Afternoon into golden hour",duration:"1 hour",mrt:"Bugis (EW12/DT14)"},
+    {id:"arab-street",name:"Arab Street",img:"Arab Street.jpg",
+      short:"Textile shops, perfume oils and rooftop cafes beside Sultan Mosque.",
+      desc:"Once Singapore's trading hub for textiles and spices, Arab Street still sells fabric by the metre alongside a new wave of specialty coffee shops and rooftop bars.",
+      highlights:["Fabric and rug shops dating back generations","Bespoke perfume oil blending","Rooftop cafes overlooking Sultan Mosque"],
+      bestTime:"Late afternoon",duration:"1 hour",mrt:"Bugis (EW12/DT14)"},
+    {id:"fort-canning",name:"Fort Canning Tree Tunnel",img:"Fort Canning Park Tree Tunnel.jpg",
+      short:"A staircase framed by tangled tree roots, hidden inside a historic park.",
+      desc:"Tucked into Fort Canning Park's old fortifications, this staircase is flanked by the exposed roots of century-old trees — one of the most photographed quiet corners in the city.",
+      highlights:["Root-covered staircase, best in soft daylight","Spice Garden and ASEAN Sculpture Garden nearby","Free entry, open all day"],
+      bestTime:"Mid-morning",duration:"30–45 minutes",mrt:"Fort Canning (DT20)"},
+    {id:"clarke-quay",name:"Clarke Quay",img:"Singapore Clarke Quay 21.jpg",
+      short:"Colourful riverside shophouses turned bars, restaurants and river cruises.",
+      desc:"Once a working river quay, Clarke Quay's restored warehouses now house restaurants, bars and clubs beneath a distinctive coloured canopy — lively well into the night.",
+      highlights:["River cruise departures along the Singapore River","Canopy-covered riverside dining","Nightlife that runs late on weekends"],
+      bestTime:"Evening",duration:"1–2 hours",mrt:"Clarke Quay (NE5)"}
+  ],
+
+  tips: [
+    {emoji:"💳",title:"Payment",short:"Cards and contactless payments are widely accepted.",
+      more:"Visa, Mastercard and contactless mobile payments work in almost every shop, hawker stall and taxi. It's still worth carrying a little cash for smaller hawker centres and wet markets."},
+    {emoji:"🌦",title:"Weather",short:"Singapore has a hot and humid tropical climate year-round.",
+      more:"Expect temperatures around 26–32°C every day of the year, with short, heavy showers possible any afternoon. Light, breathable clothing and a compact umbrella go a long way."},
+    {emoji:"🚰",title:"Drinking Water",short:"Tap water is generally safe to drink.",
+      more:"Singapore's tap water meets World Health Organization standards and is safe straight from the tap — bring a reusable bottle and refill at the many public water points."},
+    {emoji:"🔌",title:"Power Plug",short:"Singapore commonly uses Type G plugs.",
+      more:"The standard voltage is 230V with the three-pin Type G plug, the same as the UK. Bring an adapter if you're travelling from a country with a different plug type."},
+    {emoji:"📶",title:"Internet",short:"SIM cards and eSIM options are widely available.",
+      more:"Tourist SIM cards are sold at Changi Airport and convenience stores, and most major carriers offer eSIM plans you can activate before you land. Free Wi-Fi is common in malls and cafes."},
+    {emoji:"🚶",title:"Walking",short:"Singapore is pedestrian-friendly, but the weather can be hot and humid.",
+      more:"Covered walkways link many MRT stations to malls and attractions, which helps with sudden rain or midday heat. Pace outdoor walking for the cooler morning or evening hours where you can."}
+  ],
+
+  itineraries: {
+    1: [
+      {day:1,title:"City Highlights",periods:[
+        {label:"Morning",items:["Merlion Park","Marina Bay area"]},
+        {label:"Afternoon",items:["Marina Bay Sands"]},
+        {label:"Evening",items:["Gardens by the Bay"]}
+      ]}
+    ],
+    3: [
+      {day:1,title:"City & Skyline",periods:[
+        {label:"Morning",items:["Merlion Park","Marina Bay area"]},
+        {label:"Afternoon",items:["Marina Bay Sands"]},
+        {label:"Evening",items:["Gardens by the Bay"]}
+      ]},
+      {day:2,title:"Fun & Adventure",periods:[
+        {label:"Full Day",items:["Sentosa Island","Universal Studios Singapore","S.E.A. Aquarium","Wings of Time"]}
+      ]},
+      {day:3,title:"Culture & Food",periods:[
+        {label:"Full Day",items:["Chinatown","Little India","Kampong Glam","Haji Lane"]}
+      ]}
+    ],
+    5: [
+      {day:1,title:"City & Skyline",periods:[
+        {label:"Morning",items:["Merlion Park","Marina Bay area"]},
+        {label:"Afternoon",items:["Marina Bay Sands"]},
+        {label:"Evening",items:["Gardens by the Bay"]}
+      ]},
+      {day:2,title:"Fun & Adventure",periods:[
+        {label:"Full Day",items:["Sentosa Island","Universal Studios Singapore","S.E.A. Aquarium","Wings of Time"]}
+      ]},
+      {day:3,title:"Culture & Food",periods:[
+        {label:"Full Day",items:["Chinatown","Little India","Kampong Glam","Haji Lane"]}
+      ]},
+      {day:4,title:"Green Escape",periods:[
+        {label:"Morning",items:["Singapore Botanic Gardens"]},
+        {label:"Afternoon",items:["MacRitchie Reservoir"]},
+        {label:"Evening",items:["Jewel Changi Airport"]}
+      ]},
+      {day:5,title:"Hidden Gems & Farewell",periods:[
+        {label:"Morning",items:["Haji Lane","Arab Street"]},
+        {label:"Afternoon",items:["Clarke Quay"]},
+        {label:"Evening",items:["Marina Bay Sands"]}
+      ]}
+    ]
+  },
+
+  activityNotes: {
+    "marina bay area":"The stretch of promenade linking Merlion Park to Marina Bay Sands — best walked slowly, camera ready.",
+    "wings of time":"A nightly outdoor laser, water and fire show on Siloso Beach, Sentosa. Two showtimes after dark; arrive 20 minutes early for a good spot on the sand."
+  },
+
+  mapPins: [
+    {id:"marina-bay-sands",x:63,y:52},
+    {id:"merlion-park",x:58,y:48},
+    {id:"gardens-by-the-bay",x:70,y:54},
+    {id:"singapore-flyer",x:76,y:48},
+    {id:"universal-studios",x:48,y:75},
+    {id:"sentosa-island",x:54,y:80},
+    {id:"sea-aquarium",x:44,y:80},
+    {id:"chinatown",x:52,y:60},
+    {id:"little-india",x:44,y:34},
+    {id:"kampong-glam",x:52,y:38},
+    {id:"haji-lane",x:55,y:42},
+    {id:"jewel-changi",x:90,y:38},
+    {id:"botanic-gardens",x:34,y:50},
+    {id:"macritchie-reservoir",x:40,y:20}
+  ]
+};
+
+/* ================= STATE ================= */
+const state = {favorites: [], exploreCat: "all", days: 3, openDay: 1, mapFilter: "all"};
+
+/* ================= UTILITIES ================= */
+function $(sel,ctx){return (ctx||document).querySelector(sel);}
+function $all(sel,ctx){return Array.from((ctx||document).querySelectorAll(sel));}
+function slugify(s){return s.toLowerCase().trim();}
+function findDestination(name){
+  const s = slugify(name);
+  return D.destinations.find(d=>slugify(d.name)===s) || D.hiddenGems.find(d=>slugify(d.name)===s);
+}
+
+/* ---- Stable image system -----------------------------------------------
+   Every photo is a specific, permanently-named file on Wikimedia Commons —
+   a fixed URL that always resolves to the same image, never a keyword
+   search or random pool. Each destination/food item's `img` field holds
+   the exact Commons filename (set once in the DATA block above); nothing
+   here ever changes what's shown on refresh, reload, or revisit.
+   If a photo ever fails to load, it falls back to one fixed, category-
+   appropriate image (never anything random/unrelated), and if that were
+   to fail too, the plain branded surface is shown — never emoji, an
+   icon, or placeholder art standing in for a photo. */
+function wikimediaImg(filename, width){
+  return "https://commons.wikimedia.org/wiki/Special:FilePath/"+encodeURIComponent(filename)+"?width="+(width||1200);
+}
+const FALLBACK_ATTRACTION_IMG = wikimediaImg("Marina-bay-sands-wikipedia.jpg", 1200);
+const FALLBACK_FOOD_IMG = wikimediaImg("Hainanese chicken rice in Singapore.jpg", 1200);
+
+function mediaHTML(filename, category, alt, w, h){
+  w = w || 900; h = h || 700;
+  const url = wikimediaImg(filename, w);
+  const fallback = category === "food" ? FALLBACK_FOOD_IMG : FALLBACK_ATTRACTION_IMG;
+  const safeAlt = alt.replace(/"/g,"");
+  return '<div class="media"><img src="'+url+'" alt="'+safeAlt+'" loading="lazy" data-fb="0" '
+    + 'onerror="if(this.dataset.fb===\'0\'){this.dataset.fb=\'1\';this.src=\''+fallback+'\';}else{this.classList.add(\'broken\');}"></div>';
+}
+function toast(msg){
+  const host = $("#toastHost");
+  const el = document.createElement("div");
+  el.className = "toast";
+  el.textContent = msg;
+  host.appendChild(el);
+  requestAnimationFrame(()=>el.classList.add("show"));
+  setTimeout(()=>{
+    el.classList.remove("show");
+    setTimeout(()=>el.remove(),350);
+  },2200);
+}
+
+/* ================= STORAGE ================= */
+async function loadFavorites(){
+  try{
+    const res = await window.storage.get("favorites", false);
+    if(res && res.value){ state.favorites = JSON.parse(res.value); }
+  }catch(e){ state.favorites = []; }
+  updateFavCount();
+}
+async function persistFavorites(){
+  try{
+    await window.storage.set("favorites", JSON.stringify(state.favorites), false);
+  }catch(e){ console.error("Could not save favorites", e); toast("Couldn't save — try again"); }
+}
+async function loadSavedItinerary(){
+  try{
+    const res = await window.storage.get("saved-itinerary", false);
+    if(res && res.value){
+      const data = JSON.parse(res.value);
+      const banner = $("#savedBanner");
+      const d = new Date(data.savedAt);
+      banner.innerHTML = '<div class="saved-banner">✅ You saved a '+data.days+'-day itinerary'+(isFinite(d)?(' on '+d.toLocaleDateString(undefined,{month:"short",day:"numeric"})):'')+'.</div>';
+    }
+  }catch(e){ /* no saved itinerary yet */ }
+}
+async function saveItinerary(){
+  try{
+    await window.storage.set("saved-itinerary", JSON.stringify({days:state.days, savedAt:Date.now()}), false);
+    toast("Itinerary saved");
+    loadSavedItinerary();
+  }catch(e){ console.error(e); toast("Couldn't save — try again"); }
+}
+
+/* ================= FAVORITES ================= */
+function isFav(id){ return state.favorites.indexOf(id) !== -1; }
+function toggleFavorite(id){
+  const idx = state.favorites.indexOf(id);
+  if(idx===-1){ state.favorites.push(id); toast("Added to favorites"); }
+  else { state.favorites.splice(idx,1); toast("Removed from favorites"); }
+  persistFavorites();
+  updateFavCount();
+  renderExplore(); renderFeatured(); renderGems(); renderFavDrawer();
+  if($("#searchOverlay").classList.contains("open")) renderSearchResults($("#searchInput").value);
+  syncFavButtons(id);
+}
+function updateFavCount(){
+  const el = $("#favCount");
+  if(state.favorites.length>0){ el.style.display="flex"; el.textContent = state.favorites.length; }
+  else{ el.style.display="none"; }
+}
+/* FavoriteButton — a single reusable heart component (markup below in
+   favButtonHTML) used identically across every card, the modal, search
+   results and the favorites drawer. syncFavButtons keeps every visible
+   instance of a given destination's button in sync the moment its
+   saved state changes, wherever it currently appears on screen. */
+function favButtonHTML(id, name, variant){
+  const fav = isFav(id);
+  const cls = "fav-btn"+(variant?" fav-btn-"+variant:"")+(fav?" active":"");
+  const safeName = name.replace(/"/g,"");
+  const label = (fav?"Remove ":"Add ")+safeName+(fav?" from Favorites":" to Favorites");
+  return '<button type="button" class="'+cls+'" data-id="'+id+'" data-name="'+safeName+'" '
+    + 'aria-label="'+label+'" aria-pressed="'+fav+'">'
+    + '<svg class="fav-btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z"/></svg>'
+    + '</button>';
+}
+function bindFavButtons(scope){
+  $all(".fav-btn", scope).forEach(btn=>{
+    btn.addEventListener("click", e=>{
+      e.stopPropagation();
+      toggleFavorite(btn.dataset.id);
+    });
+  });
+}
+function syncFavButtons(id){
+  const fav = isFav(id);
+  $all('.fav-btn[data-id="'+id+'"]').forEach(btn=>{
+    btn.classList.toggle("active", fav);
+    btn.setAttribute("aria-pressed", fav);
+    const name = btn.dataset.name || "";
+    btn.setAttribute("aria-label", (fav?"Remove ":"Add ")+name+(fav?" from Favorites":" to Favorites"));
+    btn.classList.remove("pop");
+    void btn.offsetWidth;
+    btn.classList.add("pop");
+    setTimeout(()=>btn.classList.remove("pop"), 450);
+  });
+}
+
+/* ================= ROUTER ================= */
+const PAGES = ["home","explore","food","itinerary","transport","tips"];
+function showPage(id){
+  if(PAGES.indexOf(id)===-1) id = "home";
+  if(id!=="home") resetExperienceVideo();
+  $all(".page").forEach(p=>p.classList.remove("active"));
+  const target = $("#page-"+id);
+  if(target) target.classList.add("active");
+  $all("[data-nav]").forEach(a=>a.classList.toggle("active", a.dataset.nav===id));
+  window.scrollTo({top:0,behavior:"instant" in window ? "instant":"auto"});
+  closeMobileMenu();
+  closeSearch();
+  observeReveals();
+  onScroll();
+}
+function currentHashPage(){
+  const h = location.hash.replace("#","");
+  return PAGES.indexOf(h)!==-1 ? h : "home";
+}
+window.addEventListener("hashchange", ()=>showPage(currentHashPage()));
+
+/* ================= NAVBAR SCROLL ================= */
+const navbar = $("#navbar");
+function onScroll(){
+  const onHome = currentHashPage()==="home";
+  navbar.classList.toggle("scrolled", !onHome || window.scrollY>40);
+}
+window.addEventListener("scroll", onScroll, {passive:true});
+
+/* ================= MOBILE MENU ================= */
+function openMobileMenu(){ $("#mobileMenu").classList.add("open"); document.body.style.overflow="hidden"; }
+function closeMobileMenu(){ $("#mobileMenu").classList.remove("open"); if(!isAnyOverlayOpen()) document.body.style.overflow=""; }
+$("#menuBtn").addEventListener("click", openMobileMenu);
+$("#mmClose").addEventListener("click", closeMobileMenu);
+$all("#mobileMenu nav a").forEach(a=>a.addEventListener("click", closeMobileMenu));
+
+function isAnyOverlayOpen(){
+  return $("#searchOverlay").classList.contains("open") || $("#modalOverlay").classList.contains("open") || $("#favDrawer").classList.contains("open");
+}
+
+/* ================= SEARCH ================= */
+function buildSearchIndex(){
+  const idx = [];
+  D.destinations.forEach(d=>idx.push({id:d.id,name:d.name,cat:d.category,img:d.img,imgCat:"attraction",type:"page-explore"}));
+  D.food.forEach(f=>idx.push({name:f.name,cat:"Food · "+f.type,img:f.img,imgCat:"food",type:"page-food"}));
+  D.hawkers.forEach(h=>idx.push({name:h.name,cat:"Hawker Centre",img:h.img,imgCat:"food",type:"page-food"}));
+  D.hiddenGems.forEach(g=>idx.push({id:g.id,name:g.name,cat:"Hidden Gem",img:g.img,imgCat:"attraction",type:"page-home"}));
+  return idx;
+}
+const SEARCH_INDEX = buildSearchIndex();
+
+function openSearch(){
+  $("#searchOverlay").classList.add("open");
+  document.body.style.overflow="hidden";
+  setTimeout(()=>$("#searchInput").focus(),150);
+}
+function closeSearch(){
+  $("#searchOverlay").classList.remove("open");
+  if(!isAnyOverlayOpen()) document.body.style.overflow="";
+  $("#searchInput").value="";
+  renderSearchResults("");
+}
+$("#searchBtn").addEventListener("click", openSearch);
+$("#searchClose").addEventListener("click", closeSearch);
+$("#searchOverlay").addEventListener("click", e=>{ if(e.target.id==="searchOverlay") closeSearch(); });
+document.addEventListener("keydown", e=>{ if(e.key==="Escape"){ closeSearch(); closeModal(); closeFavDrawer(); closeMobileMenu(); }});
+
+function renderSearchResults(q){
+  const box = $("#searchResults");
+  if(!q){ box.innerHTML = '<p class="search-hint">Try "Gardens by the Bay", "laksa" or "Chinatown".</p>'; return; }
+  const query = q.toLowerCase();
+  const results = SEARCH_INDEX.filter(r => r.name.toLowerCase().indexOf(query)!==-1 || r.cat.toLowerCase().indexOf(query)!==-1).slice(0,8);
+  if(results.length===0){ box.innerHTML = '<p class="search-hint">No results for "'+q+'". Try a different search.</p>'; return; }
+  box.innerHTML = results.map(r=>{
+    const url = wikimediaImg(r.img, 120);
+    const fallback = r.imgCat === "food" ? FALLBACK_FOOD_IMG : FALLBACK_ATTRACTION_IMG;
+    const favBtn = r.imgCat==="attraction" ? favButtonHTML(r.id, r.name, "inline") : "";
+    return '<div class="search-result" data-target="'+r.type+'" data-name="'+r.name.replace(/"/g,"")+'" tabindex="0" role="button">' +
+      '<span class="sr-thumb"><img src="'+url+'" alt="" data-fb="0" onerror="if(this.dataset.fb===\'0\'){this.dataset.fb=\'1\';this.src=\''+fallback+'\';}else{this.style.display=\'none\';}"></span>' +
+      '<span class="sr-text"><span class="sr-name">'+r.name+'</span><br><span class="sr-meta">'+r.cat+'</span></span>'+favBtn+'</div>';
+  }).join("");
+  bindFavButtons(box);
+  $all(".search-result", box).forEach(row=>{
+    const go = ()=>{
+      const target = row.dataset.target.replace("page-","");
+      location.hash = target;
+      showPage(target);
+      closeSearch();
+      const dest = findDestination(row.dataset.name);
+      // The search result row itself won't exist once the overlay closes,
+      // so fall back to the search button as the sensible "return point".
+      if(dest) setTimeout(()=>openModal(dest, $("#searchBtn")),250);
+    };
+    row.addEventListener("click", e=>{ if(e.target.closest(".fav-btn")) return; go(); });
+    row.addEventListener("keydown", e=>{ if(e.target.closest(".fav-btn")) return; if(e.key==="Enter"){ go(); } });
+  });
+}
+$("#searchInput").addEventListener("input", e=>renderSearchResults(e.target.value));
+
+/* ================= MODAL ================= */
+/* Centralized focus management: whichever element triggers openModal()
+   is remembered, keyboard focus moves into the modal on open, Tab/Shift+Tab
+   are trapped inside it while open, and closeModal() — the single function
+   every closing method (Escape, ×, Back, outside click) funnels through —
+   returns focus to that exact trigger, or a safe fallback if it's gone. */
+let modalTriggerEl = null;
+let modalFocusTrapHandler = null;
+
+function getFocusableElements(container){
+  return $all('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]', container)
+    .filter(el => el.tabIndex !== -1 && el.offsetParent !== null);
+}
+function activateModalFocusTrap(){
+  deactivateModalFocusTrap();
+  modalFocusTrapHandler = function(e){
+    if(e.key !== "Tab") return;
+    const card = $("#modalCard");
+    const focusables = getFocusableElements(card);
+    if(focusables.length === 0) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length-1];
+    const inside = card.contains(document.activeElement);
+    if(e.shiftKey){
+      if(!inside || document.activeElement === first){ e.preventDefault(); last.focus(); }
+    } else {
+      if(!inside || document.activeElement === last){ e.preventDefault(); first.focus(); }
+    }
+  };
+  document.addEventListener("keydown", modalFocusTrapHandler);
+}
+function deactivateModalFocusTrap(){
+  if(modalFocusTrapHandler){
+    document.removeEventListener("keydown", modalFocusTrapHandler);
+    modalFocusTrapHandler = null;
+  }
+}
+function openModal(item, triggerEl){
+  modalTriggerEl = triggerEl || document.activeElement || null;
+  const card = $("#modalCard");
+  const fav = isFav(item.id);
+  card.innerHTML =
+    '<div class="modal-hero">'+
+      mediaHTML(item.img, "attraction", item.name, 1200, 700).replace('class="media"','class="media" style="position:absolute;inset:0;"') +
+      '<div class="grad"></div>' +
+      '<button class="modal-close" aria-label="Close">'+iconClose()+'</button>'+
+      favButtonHTML(item.id, item.name, "modal")+
+      '<div class="modal-hero-text"><p class="mh-cat">'+(item.category||"Hidden Gem")+'</p><h2>'+item.name+'</h2></div>'+
+    '</div>'+
+    '<div class="modal-body">'+
+      '<p class="desc">'+item.desc+'</p>'+
+      '<div class="modal-meta">'+
+        '<div class="mm-item"><div class="mm-label">Best time</div><div class="mm-value">'+item.bestTime+'</div></div>'+
+        '<div class="mm-item"><div class="mm-label">Duration</div><div class="mm-value">'+item.duration+'</div></div>'+
+        '<div class="mm-item"><div class="mm-label">Nearby MRT</div><div class="mm-value">'+(item.mrt||"—")+'</div></div>'+
+      '</div>'+
+      '<h4 class="hi">Highlights</h4>'+
+      '<ul class="highlight-list">'+item.highlights.map(h=>'<li>'+h+'</li>').join("")+'</ul>'+
+      '<div class="modal-mini-map">'+iconPin()+'<div><div class="mm-title">'+(item.mrt||"City centre")+'</div><div class="mm-sub">Nearest MRT station</div></div></div>'+
+      '<div class="modal-actions">'+
+        '<button class="btn btn-outline" id="modalBack">Back to Explore</button>'+
+        '<button class="btn btn-primary" id="modalFavBtn">'+(fav?"Saved to Favorites":"Save to Favorites")+'</button>'+
+      '</div>'+
+    '</div>';
+  $("#modalOverlay").classList.add("open");
+  document.body.style.overflow="hidden";
+  $(".modal-close",card).addEventListener("click", closeModal);
+  bindFavButtons(card);
+  $(".fav-btn",card).addEventListener("click", ()=>refreshModalFavBtn(item.id));
+  $("#modalFavBtn",card).addEventListener("click", ()=>{ toggleFavorite(item.id); refreshModalFavBtn(item.id); });
+  $("#modalBack",card).addEventListener("click", closeModal);
+  $(".modal-close",card).focus();
+  activateModalFocusTrap();
+}
+function refreshModalFavBtn(id){
+  const b = $("#modalFavBtn");
+  if(b) b.textContent = isFav(id) ? "Saved to Favorites" : "Save to Favorites";
+}
+function closeModal(){
+  const wasOpen = $("#modalOverlay").classList.contains("open");
+  if(!wasOpen) return;
+  $("#modalOverlay").classList.remove("open");
+  if(!isAnyOverlayOpen()) document.body.style.overflow="";
+  deactivateModalFocusTrap();
+  const trigger = modalTriggerEl;
+  modalTriggerEl = null;
+  const canRestore = !!(trigger && document.contains(trigger) && trigger.offsetParent !== null);
+  if(canRestore){ trigger.focus(); }
+  else { const fallback = $("main"); if(fallback) fallback.focus(); }
+}
+$("#modalOverlay").addEventListener("click", e=>{ if(e.target.id==="modalOverlay") closeModal(); });
+
+function iconClose(){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';}
+function iconPin(){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>';}
+function arrowSVG(){return '<svg class="cl-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>';}
+
+/* ================= FAVORITES DRAWER ================= */
+function openFavDrawer(){
+  renderFavDrawer();
+  $("#favDrawer").classList.add("open");
+  $("#drawerOverlay").classList.add("open");
+  document.body.style.overflow="hidden";
+}
+function closeFavDrawer(){
+  $("#favDrawer").classList.remove("open");
+  $("#drawerOverlay").classList.remove("open");
+  if(!isAnyOverlayOpen()) document.body.style.overflow="";
+}
+$("#favBtn").addEventListener("click", openFavDrawer);
+$("#drawerClose").addEventListener("click", closeFavDrawer);
+$("#drawerOverlay").addEventListener("click", closeFavDrawer);
+
+function findById(id){
+  return D.destinations.find(d=>d.id===id) || D.hiddenGems.find(d=>d.id===id);
+}
+function renderFavDrawer(){
+  const list = $("#drawerList");
+  if(state.favorites.length===0){
+    list.innerHTML = '<div class="drawer-empty"><div class="de-icon"><svg viewBox="0 0 24 24"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z"/></svg></div><p>Nothing saved yet.<br>Tap the heart on any destination to add it here.</p></div>';
+    return;
+  }
+  const items = state.favorites.map(id=>findById(id)).filter(Boolean);
+  list.innerHTML = items.map(d=>{
+    const url = wikimediaImg(d.img, 140);
+    return '<div class="drawer-item">'+
+      '<span class="di-thumb"><img src="'+url+'" alt="" data-fb="0" onerror="if(this.dataset.fb===\'0\'){this.dataset.fb=\'1\';this.src=\''+FALLBACK_ATTRACTION_IMG+'\';}else{this.style.display=\'none\';}"></span>'+
+      '<div class="di-info"><h4>'+d.name+'</h4><p>'+(d.category||"Hidden Gem")+'</p></div>'+
+      favButtonHTML(d.id,d.name,"inline")+
+    '</div>';
+  }).join("");
+  bindFavButtons(list);
+  $all(".drawer-item", list).forEach((el,i)=>{
+    el.addEventListener("click", (e)=>{
+      if(e.target.closest(".fav-btn")) return;
+      closeFavDrawer();
+      location.hash="explore"; showPage("explore");
+      // The drawer slides away rather than being removed, so its items
+      // stay technically "visible" to a naive check — use the favorites
+      // button itself as the sensible return point instead.
+      setTimeout(()=>openModal(items[i], $("#favBtn")),200);
+    });
+  });
+}
+
+/* ================= EXPLORE ================= */
+function renderExplore(){
+  const grid = $("#exploreGrid");
+  const list = state.exploreCat==="all" ? D.destinations : D.destinations.filter(d=>d.category===state.exploreCat);
+  grid.innerHTML = list.map(d=>destinationCard(d)).join("");
+  bindDestinationCards(grid);
+}
+function destinationCard(d){
+  return '<article class="dcard" data-id="'+d.id+'" tabindex="0" role="button" aria-label="View details for '+d.name.replace(/"/g,"")+'">'+
+    mediaHTML(d.img,"attraction",d.name,700,540)+
+    '<span class="cat-pill">'+d.category+'</span>'+
+    favButtonHTML(d.id,d.name,"corner")+
+    '<div class="body">'+
+      '<h3>'+d.name+'</h3><p>'+d.short+'</p>'+
+      '<div class="card-foot"><span></span><span class="card-link explore-link" data-id="'+d.id+'">Explore'+arrowSVG()+'</span></div>'+
+    '</div>'+
+  '</article>';
+}
+function bindDestinationCards(scope){
+  bindFavButtons(scope);
+  $all(".dcard", scope).forEach(c=>{
+    c.addEventListener("click", e=>{
+      if(e.target.closest(".fav-btn")) return;
+      const d = D.destinations.find(x=>x.id===c.dataset.id);
+      if(d) openModal(d, c);
+    });
+    c.addEventListener("keydown", e=>{
+      if(e.target.closest(".fav-btn")) return;
+      if(e.key==="Enter" || e.key===" "){
+        e.preventDefault();
+        const d = D.destinations.find(x=>x.id===c.dataset.id);
+        if(d) openModal(d, c);
+      }
+    });
+  });
+}
+$("#exploreTabs").addEventListener("click", e=>{
+  const btn = e.target.closest(".tab");
+  if(!btn) return;
+  $all(".tab", $("#exploreTabs")).forEach(t=>t.classList.remove("active"));
+  btn.classList.add("active");
+  state.exploreCat = btn.dataset.cat;
+  renderExplore();
+});
+
+/* ================= FEATURED (home) ================= */
+const FEATURED_IDS = ["marina-bay-sands","gardens-by-the-bay","universal-studios","jewel-changi"];
+function renderFeatured(){
+  const strip = $("#featuredStrip");
+  strip.innerHTML = FEATURED_IDS.map(id=>{
+    const d = D.destinations.find(x=>x.id===id);
+    return '<div class="feat-card" data-id="'+d.id+'" tabindex="0" role="button" aria-label="View details for '+d.name.replace(/"/g,"")+'">'+
+      mediaHTML(d.img,"attraction",d.name,600,800)+
+      '<div class="grad"></div>'+
+      favButtonHTML(d.id,d.name,"corner")+
+      '<div class="feat-info"><div class="fi-tag">'+d.category+'</div><h3>'+d.name+'</h3><div class="fi-more">'+d.short+'</div></div>'+
+    '</div>';
+  }).join("");
+  bindFavButtons(strip);
+  $all(".feat-card", strip).forEach(c=>{
+    c.addEventListener("click", e=>{ if(e.target.closest(".fav-btn")) return; const d=D.destinations.find(x=>x.id===c.dataset.id); openModal(d, c); });
+    c.addEventListener("keydown", e=>{
+      if(e.target.closest(".fav-btn")) return;
+      if(e.key==="Enter" || e.key===" "){
+        e.preventDefault();
+        const d=D.destinations.find(x=>x.id===c.dataset.id);
+        if(d) openModal(d, c);
+      }
+    });
+  });
+}
+
+/* ================= HIDDEN GEMS ================= */
+function renderGems(){
+  const wrap = $("#gemsWrap");
+  wrap.innerHTML = D.hiddenGems.map((g,i)=>{
+    return '<div class="gem-row" data-idx="'+i+'" tabindex="0" role="button" aria-label="View details for '+g.name.replace(/"/g,"")+'">'+
+      '<div class="gem-media">'+mediaHTML(g.img,"attraction",g.name,800,560)+favButtonHTML(g.id,g.name,"corner")+'</div>'+
+      '<div class="gem-text"><h3>'+g.name+'</h3><p>'+g.short+'</p><span class="card-link">Discover more'+arrowSVG()+'</span></div>'+
+    '</div>';
+  }).join("");
+  bindFavButtons(wrap);
+  $all(".gem-row", wrap).forEach((row,i)=>{
+    row.addEventListener("click", e=>{ if(e.target.closest(".fav-btn")) return; openModal(D.hiddenGems[i], row); });
+    row.addEventListener("keydown", e=>{
+      if(e.target.closest(".fav-btn")) return;
+      if(e.key==="Enter" || e.key===" "){
+        e.preventDefault();
+        openModal(D.hiddenGems[i], row);
+      }
+    });
+  });
+}
+
+/* ================= MAP ================= */
+const CATEGORY_SHORT = {
+  "Iconic Attractions":"Attractions",
+  "Entertainment":"Entertainment",
+  "Culture & History":"Culture",
+  "Nature":"Nature"
+};
+const MAP_FILTERS = [
+  {key:"all", label:"All 14"},
+  {key:"Iconic Attractions", label:"Attractions"},
+  {key:"Entertainment", label:"Entertainment"},
+  {key:"Culture & History", label:"Culture"},
+  {key:"Nature", label:"Nature"}
+];
+function mapPinIconSVG(){
+  return '<svg viewBox="0 0 24 32" aria-hidden="true">'
+    + '<path class="pin-body" d="M12 0C5.4 0 0 5.4 0 12c0 9 12 20 12 20s12-11 12-20C24 5.4 18.6 0 12 0z"/>'
+    + '<circle class="pin-dot" cx="12" cy="12" r="4.6"/>'
+    + '</svg>';
+}
+function closeAllMapPopovers(){
+  $all(".map-popover.open").forEach(p=>p.classList.remove("open"));
+  $all(".map-pin.active").forEach(p=>p.classList.remove("active"));
+}
+/* Adaptive popup placement: computes the popover's exact pixel position
+   fresh on every open, so it always fits fully inside the map — flips
+   above/below and shifts left/right depending on how much room the
+   selected marker actually has, rather than always assuming "above,
+   centered" (which is what caused popups near the map edges to be
+   clipped by the map's own overflow:hidden). */
+const MAP_EDGE_MARGIN = 20;
+const MAP_PIN_GAP = 14;
+function positionMapPopover(pin, popover){
+  const wrap = $("#mapWrap");
+  const wrapRect = wrap.getBoundingClientRect();
+  const pinRect = pin.getBoundingClientRect();
+
+  // Popover is already laid out (opacity:0, not display:none) so its
+  // natural size can be measured before we decide where to place it.
+  const popRect = popover.getBoundingClientRect();
+  const popW = popRect.width;
+  const popH = popRect.height;
+
+  const tipX = pinRect.left + pinRect.width/2 - wrapRect.left;
+  const pinTop = pinRect.top - wrapRect.top;
+  const pinBottom = pinRect.bottom - wrapRect.top;
+
+  const spaceAbove = pinTop - MAP_EDGE_MARGIN;
+  const spaceBelow = wrapRect.height - pinBottom - MAP_EDGE_MARGIN;
+
+  let top;
+  if(spaceAbove >= popH + MAP_PIN_GAP){
+    top = pinTop - MAP_PIN_GAP - popH;               // enough room above: preferred placement
+  } else if(spaceBelow >= popH + MAP_PIN_GAP){
+    top = pinBottom + MAP_PIN_GAP;                    // not enough above: flip below
+  } else {
+    // Neither side fully fits — use whichever has more room, then clamp
+    // so the popup still stays fully inside the map's visible bounds.
+    top = spaceAbove >= spaceBelow ? (pinTop - MAP_PIN_GAP - popH) : (pinBottom + MAP_PIN_GAP);
+  }
+  top = Math.max(MAP_EDGE_MARGIN, Math.min(top, wrapRect.height - MAP_EDGE_MARGIN - popH));
+
+  let left = tipX - popW/2;
+  left = Math.max(MAP_EDGE_MARGIN, Math.min(left, wrapRect.width - MAP_EDGE_MARGIN - popW));
+
+  popover.style.left = left + "px";
+  popover.style.top = top + "px";
+}
+function repositionOpenMapPopover(){
+  const openPop = $(".map-popover.open");
+  if(!openPop) return;
+  const id = openPop.dataset.popoverFor;
+  const pin = $('.map-pin[data-id="'+id+'"]');
+  if(pin) positionMapPopover(pin, openPop);
+}
+window.addEventListener("resize", ()=>{ repositionOpenMapPopover(); });
+
+function renderMap(){
+  renderMapFilters();
+  renderMapPins();
+}
+function renderMapFilters(){
+  const row = $("#mapFilterRow");
+  row.innerHTML = MAP_FILTERS.map(f=>
+    '<button type="button" class="map-filter-tab'+(state.mapFilter===f.key?' active':'')+'" data-filter="'+f.key+'">'+f.label+'</button>'
+  ).join("");
+  row.addEventListener("click", e=>{
+    const btn = e.target.closest(".map-filter-tab");
+    if(!btn) return;
+    if(state.mapFilter === btn.dataset.filter) return;
+    state.mapFilter = btn.dataset.filter;
+    $all(".map-filter-tab", row).forEach(t=>t.classList.toggle("active", t===btn));
+    switchMapPins();
+  });
+}
+function switchMapPins(){
+  const holder = $("#mapPins");
+  closeAllMapPopovers();
+  holder.classList.add("is-switching");
+  setTimeout(()=>{
+    renderMapPins();
+    holder.classList.remove("is-switching");
+  }, 160);
+}
+function renderMapPins(){
+  const holder = $("#mapPins");
+  const pins = state.mapFilter === "all"
+    ? D.mapPins
+    : D.mapPins.filter(p=>{
+        const d = D.destinations.find(x=>x.id===p.id);
+        return d && d.category === state.mapFilter;
+      });
+  holder.innerHTML = pins.map(p=>{
+    const d = D.destinations.find(x=>x.id===p.id);
+    if(!d) return "";
+    const url = wikimediaImg(d.img, 300);
+    return '<button type="button" class="map-pin" style="left:'+p.x+'%;top:'+p.y+'%;" data-id="'+p.id+'" aria-label="View '+d.name.replace(/"/g,"")+' on map">'
+        + mapPinIconSVG() +
+      '</button>'+
+      '<div class="map-popover" data-popover-for="'+p.id+'">'+
+        '<div class="mp-thumb"><img src="'+url+'" alt="" data-fb="0" onerror="if(this.dataset.fb===\'0\'){this.dataset.fb=\'1\';this.src=\''+FALLBACK_ATTRACTION_IMG+'\';}else{this.style.display=\'none\';}"></div>'+
+        '<div class="mp-body">'+
+          '<div class="mp-cat">Category: '+(CATEGORY_SHORT[d.category]||d.category)+'</div>'+
+          '<h4>'+d.name+'</h4><p class="mp-desc">'+d.short+'</p>'+
+          '<button type="button" class="btn btn-sm btn-primary" data-view="'+p.id+'">View Details'+arrowSVG()+'</button>'+
+        '</div>'+
+      '</div>';
+  }).join("");
+  $all(".map-pin", holder).forEach(pin=>{
+    pin.addEventListener("click", e=>{
+      e.stopPropagation();
+      const id = pin.dataset.id;
+      const popover = $('.map-popover[data-popover-for="'+id+'"]');
+      const isOpen = popover.classList.contains("open");
+      closeAllMapPopovers();
+      if(!isOpen){
+        positionMapPopover(pin, popover);
+        popover.classList.add("open");
+        pin.classList.add("active");
+      }
+    });
+  });
+  $all("[data-view]", holder).forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const d = D.destinations.find(x=>x.id===btn.dataset.view);
+
+      if(d) openModal(d, btn);
+    });
+  });
+}
+document.addEventListener("click", e=>{
+  if(!e.target.closest(".map-pin")) closeAllMapPopovers();
+});
+
+/* ================= FOOD ================= */
+function renderFood(){
+  $("#foodGrid").innerHTML = D.food.map(f=>{
+    return '<div class="food-card">'+mediaHTML(f.img,"food",f.name,600,600)+
+      '<div class="body"><div class="ft-tag">'+f.type+'</div><h3>'+f.emoji+' '+f.name+'</h3><p>'+f.desc+'</p><div class="rec">'+f.rec+'</div></div>'+
+    '</div>';
+  }).join("");
+  $("#hawkerGrid").innerHTML = D.hawkers.map(h=>{
+    return '<div class="hawker-card">'+mediaHTML(h.img,"food",h.name,700,560).replace('class="media"','class="media" style="position:absolute;inset:0;"')+
+      '<div class="grad"></div><div class="hawker-info"><h3>'+h.name+'</h3><p>'+h.desc+'</p></div>'+
+    '</div>';
+  }).join("");
+}
+
+/* ================= TRANSPORT/TIPS ================= */
+function renderTips(){
+  $("#tipsGrid").innerHTML = D.tips.map((t,i)=>{
+    return '<div class="tip-card" data-idx="'+i+'">'+
+      '<div class="tip-top"><span class="tip-emoji">'+t.emoji+'</span><h4>'+t.title+'</h4><span class="tip-toggle">Learn More</span></div>'+
+      '<p class="tip-short">'+t.short+'</p>'+
+      '<div class="tip-more"><p>'+t.more+'</p></div>'+
+    '</div>';
+  }).join("");
+  $all(".tip-card").forEach(card=>{
+    $(".tip-top",card).addEventListener("click", ()=>{
+      const opening = !card.classList.contains("open");
+      card.classList.toggle("open");
+      $(".tip-toggle",card).textContent = opening ? "Show Less" : "Learn More";
+    });
+  });
+}
+
+/* ================= ITINERARY ================= */
+function renderItinerary(){
+  const days = D.itineraries[state.days];
+  const tl = $("#itinTimeline");
+  tl.innerHTML = days.map(d=>{
+    const open = d.day===state.openDay ? " open":"";
+    return '<div class="day-block'+open+'" data-day="'+d.day+'">'+
+      '<div class="day-head"><span class="day-badge">'+d.day+'</span><h3>Day '+d.day+' — '+d.title+'</h3>'+
+        '<svg class="day-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></div>'+
+      '<div class="day-body"><div class="day-body-inner">'+
+        d.periods.map(p=>{
+          return '<div class="period"><div class="period-label">'+p.label+'</div>'+
+            p.items.map(name=>{
+              return '<div class="activity-wrap"><div class="activity" data-name="'+name.replace(/"/g,"")+'">'+
+                '<span class="activity-name">'+name+'</span>'+
+                '<span class="activity-more">'+iconPlus()+'</span></div>'+
+                '<div class="activity-detail"><div class="activity-detail-inner"></div></div></div>';
+            }).join("")+
+          '</div>';
+        }).join("")+
+      '</div></div>'+
+    '</div>';
+  }).join("");
+
+  $all(".day-head", tl).forEach(head=>{
+    head.addEventListener("click", ()=>{
+      const block = head.closest(".day-block");
+      const wasOpen = block.classList.contains("open");
+      $all(".day-block", tl).forEach(b=>b.classList.remove("open"));
+      if(!wasOpen){ block.classList.add("open"); state.openDay = Number(block.dataset.day); }
+      else{ state.openDay = null; }
+    });
+  });
+  $all(".activity", tl).forEach(act=>{
+    act.addEventListener("click", ()=>{
+      const wrap = act.closest(".activity-wrap");
+      const detail = $(".activity-detail", wrap);
+      const inner = $(".activity-detail-inner", detail);
+      const name = act.dataset.name;
+      const isOpen = act.classList.contains("open");
+      if(!isOpen){
+        const dest = findDestination(name);
+        const note = D.activityNotes[name.toLowerCase()];
+        inner.textContent = dest ? dest.short : (note || "Part of today's route — see the Explore page for full details.");
+        detail.style.maxHeight = detail.scrollHeight + "px";
+        act.classList.add("open");
+      } else {
+        detail.style.maxHeight = "0px";
+        act.classList.remove("open");
+      }
+    });
+  });
+}
+function iconPlus(){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>';}
+
+$("#durationTabs").addEventListener("click", e=>{
+  const btn = e.target.closest("button");
+  if(!btn) return;
+  $all("button", $("#durationTabs")).forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  state.days = Number(btn.dataset.days);
+  state.openDay = 1;
+  renderItinerary();
+});
+$("#saveItinBtn").addEventListener("click", saveItinerary);
+
+/* ================= NAV CLICK BINDING ================= */
+$all("[data-nav]").forEach(a=>{
+  a.addEventListener("click", (e)=>{
+    // hash change listener drives the actual page swap
+  });
+});
+
+/* ================= REVEAL ON SCROLL ================= */
+let io;
+function observeReveals(){
+  if(!("IntersectionObserver" in window)){
+    $all(".reveal").forEach(el=>el.classList.add("is-visible"));
+    return;
+  }
+  if(io) io.disconnect();
+  io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){ entry.target.classList.add("is-visible"); io.unobserve(entry.target); }
+    });
+  }, {threshold:.14, rootMargin:"0px 0px -40px 0px"});
+  $all(".reveal").forEach(el=>{
+    if(!el.classList.contains("is-visible")) io.observe(el);
+  });
+}
+
+/* ================= EXPERIENCE SINGAPORE VIDEO =================
+   Lazy-loaded YouTube facade: the real <iframe> player is only created
+   once the person clicks play, so no YouTube player loads (or costs
+   any performance) on initial page load. */
+const YOUTUBE_VIDEO_ID = "tS5oVd0Uvsc";
+
+function initExperienceVideo(){
+  const frame = $("#videoFrame");
+  if(!frame) return;
+  frame.addEventListener("click", playExperienceVideo);
+  const btn = $("#playVideoBtn");
+  if(btn){
+    // Prevent a double-trigger: the button's own click already bubbles
+    // up to the frame listener above, so this just stops the bubbled
+    // frame click from re-running after the button's handler fires.
+    btn.addEventListener("click", (e)=>{ e.stopPropagation(); playExperienceVideo(); });
+  }
+}
+
+function playExperienceVideo(){
+  const frame = $("#videoFrame");
+  if(!frame || frame.classList.contains("is-playing")) return;
+  const iframe = document.createElement("iframe");
+
+  // Build the embed URL from the official /embed/ path. `origin` is read
+  // dynamically from window.location.origin at runtime (never hardcoded)
+  // so the player correctly identifies whatever domain the site is
+  // actually being served from — this, together with enablejsapi=1, is
+  // what YouTube's player uses to validate the embedding page and avoid
+  // "Error 153" configuration errors.
+  const origin = window.location.origin && window.location.origin !== "null"
+    ? window.location.origin
+    : "";
+  const params = new URLSearchParams({
+    autoplay: "1",
+    rel: "0",
+    modestbranding: "1",
+    playsinline: "1",
+    enablejsapi: "1"
+  });
+  if(origin) params.set("origin", origin);
+
+  iframe.src = "https://www.youtube.com/embed/"+YOUTUBE_VIDEO_ID+"?"+params.toString();
+  iframe.title = "Experience Singapore — featured travel film";
+  iframe.width = "100%";
+  iframe.height = "100%";
+
+  // Standard, non-restrictive YouTube embed permissions — no sandbox
+  // attribute is set, since a restrictive sandbox is what commonly
+  // breaks normal playback.
+  iframe.setAttribute("allow","accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
+  iframe.allowFullscreen = true;
+  iframe.setAttribute("allowfullscreen","");
+
+  // Explicitly send a same-protocol, origin-only referrer on cross-site
+  // requests rather than suppressing the Referer header entirely (which
+  // is what triggers YouTube's player identification error).
+  iframe.setAttribute("referrerpolicy","strict-origin-when-cross-origin");
+
+  iframe.setAttribute("frameborder","0");
+  frame.appendChild(iframe);
+  frame.classList.add("is-playing");
+}
+
+function resetExperienceVideo(){
+  const frame = $("#videoFrame");
+  if(!frame) return;
+  const iframe = frame.querySelector("iframe");
+  if(iframe){ iframe.remove(); frame.classList.remove("is-playing"); }
+}
+
+/* ================= FLOATING AI CHAT BUTTON =================
+   Reusable global component: FloatingAIChatButton
+   Mounted once in the page markup (#aiFabWrap), so it automatically
+   appears on every page/section without any extra wiring per page.
+   ------------------------------------------------------------
+   To connect your AI assistant, replace the URL below. That's the
+   only line a developer needs to touch. */
+const CHATBOT_URL = "https://chatgpt.com";
+/* ============================================================ */
+
+function FloatingAIChatButton(){
+  const wrap = $("#aiFabWrap");
+  const btn = $("#aiFabBtn");
+  if(!wrap || !btn) return;
+
+  // Keep the anchor's real href in sync with the configured URL, so the
+  // button works natively (right-click "open in new tab", middle-click,
+  // keyboard Enter) even before any JS click handler runs.
+  btn.setAttribute("href", CHATBOT_URL);
+
+  // Explicit click handling guarantees a new tab opens without disturbing
+  // the current Discover Singapore session, on both desktop and mobile.
+  btn.addEventListener("click", (e)=>{
+    e.preventDefault();
+    window.open(CHATBOT_URL, "_blank", "noopener,noreferrer");
+  });
+
+  let hideTimer = null;
+  let interacted = false;
+  let idleCooldownUntil = 0;
+  let lastActivity = Date.now();
+
+  function showLabel(){ wrap.classList.add("label-visible"); }
+  function hideLabel(){ wrap.classList.remove("label-visible"); }
+  function revealBriefly(duration){
+    showLabel();
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(hideLabel, duration || 4200);
+  }
+
+  btn.addEventListener("mouseenter", ()=>{ interacted = true; clearTimeout(hideTimer); showLabel(); });
+  btn.addEventListener("mouseleave", ()=>{ hideTimer = setTimeout(hideLabel, 250); });
+  btn.addEventListener("focus", ()=>{ interacted = true; clearTimeout(hideTimer); showLabel(); });
+  btn.addEventListener("blur", ()=>{ hideTimer = setTimeout(hideLabel, 150); });
+
+  // First-visit reveal: a single, deliberate moment shortly after load.
+  setTimeout(()=>{ if(!interacted) revealBriefly(4200); }, 1500);
+
+  // Idle reveal: if the visitor has been inactive for a while, surface the
+  // label again once, with a cooldown so it never feels naggy.
+  const markActivity = ()=>{ lastActivity = Date.now(); };
+  ["mousemove","scroll","keydown","touchstart"].forEach(evt=>{
+    window.addEventListener(evt, markActivity, {passive:true});
+  });
+  setInterval(()=>{
+    const idleFor = Date.now() - lastActivity;
+    if(idleFor > 45000 && Date.now() > idleCooldownUntil && !wrap.classList.contains("label-visible")){
+      revealBriefly(4200);
+      idleCooldownUntil = Date.now() + 60000;
+    }
+  }, 5000);
+}
+
+/* ================= INIT ================= */
+async function init(){
+  renderExplore();
+  renderFeatured();
+  renderGems();
+  renderMap();
+  renderFood();
+  renderTips();
+  renderItinerary();
+  initExperienceVideo();
+  FloatingAIChatButton();
+  await loadFavorites();
+  renderExplore(); renderFeatured();
+  loadSavedItinerary();
+  showPage(currentHashPage());
+  onScroll();
+  observeReveals();
+}
+init();
+
+})();
+</script>
+</body>
+</html>
